@@ -1,0 +1,310 @@
+
+#root {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  /* background: linear-gradient(#fff, #999); */
+  background: linear-gradient( #cc693c, rgb(255, 255, 255));
+}
+
+#root>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  flex-direction: row !important;
+}
+
+.row>* {
+  margin: 5px;
+}
+
+/* h1 {
+  font-family: 'Damion', cursive;
+  color: #fff;
+  text-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+} */
+
+h2 {
+  color: #fff;
+  /*the text-shadow property below provides a border around the card name text*/
+  text-shadow: 1px 1px 0 #000,
+  -1px 1px 0 #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000,
+  0px 1px 0 #000,
+  0px -1px 0 #000,
+  -1px 0px 0 #000,
+  1px 0px 0 #000,
+  2px 2px 0 #000,
+  -2px 2px 0 #000,
+  2px -2px 0 #000,
+  -2px -2px 0 #000,
+  0px 2px 0 #000,
+  0px -2px 0 #000,
+  -2px 0px 0 #000,
+  2px 0px 0 #000,
+  1px 2px 0 #000,
+  -1px 2px 0 #000,
+  1px -2px 0 #000,
+  -1px -2px 0 #000,
+  2px 1px 0 #000,
+  -2px 1px 0 #000,
+  2px -1px 0 #000,
+  -2px -1px 0 #000;    
+}
+
+.swipe {
+  position: absolute;
+  display: flex;
+}
+
+.cardContainer {
+  width: 90vw;
+  max-width: 260px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  width: 80vw;
+  max-width: 260px;
+  height: 300px;
+  box-shadow: 4px 3px 2px 0px rgba(0, 0, 0, 0.164);
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+}
+
+.cardContent {
+  width: 100%;
+  height: 100%;
+}
+
+.swipe:last-of-type {
+
+}
+
+.card h3 {
+  position: absolute;
+  bottom: 0;
+  margin: 10px;
+  /*the text-shadow property below provides a border around the card name text*/
+  text-shadow: 1px 1px 0 #000,
+  -1px 1px 0 #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000,
+  0px 1px 0 #000,
+  0px -1px 0 #000,
+  -1px 0px 0 #000,
+  1px 0px 0 #000,
+  2px 2px 0 #000,
+  -2px 2px 0 #000,
+  2px -2px 0 #000,
+  -2px -2px 0 #000,
+  0px 2px 0 #000,
+  0px -2px 0 #000,
+  -2px 0px 0 #000,
+  2px 0px 0 #000,
+  1px 2px 0 #000,
+  -1px 2px 0 #000,
+  1px -2px 0 #000,
+  -1px -2px 0 #000,
+  2px 1px 0 #000,
+  -2px 1px 0 #000,
+  2px -1px 0 #000,
+  -2px -1px 0 #000;
+  color: rgb(255, 255, 255);
+}
+
+.card h1 {
+  position: absolute;
+  bottom: 25%;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  /*the text-shadow property below provides a border around the card name text*/
+  text-shadow: 1px 1px 0 #000,
+  -1px 1px 0 #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000,
+  0px 1px 0 #000,
+  0px -1px 0 #000,
+  -1px 0px 0 #000,
+  1px 0px 0 #000,
+  2px 2px 0 #000,
+  -2px 2px 0 #000,
+  2px -2px 0 #000,
+  -2px -2px 0 #000,
+  0px 2px 0 #000,
+  0px -2px 0 #000,
+  -2px 0px 0 #000,
+  2px 0px 0 #000,
+  1px 2px 0 #000,
+  -1px 2px 0 #000,
+  1px -2px 0 #000,
+  -1px -2px 0 #000,
+  2px 1px 0 #000,
+  -2px 1px 0 #000,
+  2px -1px 0 #000,
+  -2px -1px 0 #000;
+  color: rgb(255, 255, 255);
+}
+
+
+.infoText {
+  width: 100%;
+  height: 28px;
+  justify-content: center;
+  display: flex;
+  color: #fff;
+  animation-name: popup;
+  animation-duration: 800ms;
+}
+
+.buttons {
+  margin: 20px;
+  display: flex;
+}
+
+.buttons div {
+  flex-shrink: 0;
+  padding: 20px;
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  background-color: #ffffff;
+  transition: 200ms;
+  margin: 0 40px;
+  box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.267);
+}
+
+.buttons button:hover {
+  transform: scale(1.05);
+}
+
+.navbar {
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  height: 80px;
+  align-items: flex-start !important;
+}
+
+.nav-logo {
+  display: flex;
+  margin: 0 auto;
+  height: 140px;
+  align-content: flex-end
+}
+
+.navbar-icons {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.nav-menu {
+  background-color: rgb(0, 0, 0);
+  width: 40vh;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 350ms;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+  z-index: 100;
+}
+
+.nav-text {
+  color:white;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  height: 60px
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 50px;
+}
+
+.page {
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  color: black
+}
+
+.nav-text a:hover {
+  background-color: rgba(158, 152, 152, 0.322)
+}
+
+.nav-text a:active {
+  background-color: rgba(128, 128, 128, 0.171)
+}
+
+.nav-menu-items {
+  width: 100%
+}
+
+.navbar-toggle {
+  background-color: black;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+span {
+  margin-left: 16px
+}
+
+@keyframes popup {
+  0%   { transform: scale(1,1) }
+  10%  { transform: scale(1.1,1.1) }
+  30%  { transform: scale(.9,.9) }
+  50%  { transform: scale(1,1) }
+  57%  { transform: scale(1,1) }
+  64%  { transform: scale(1,1) }
+  100% { transform: scale(1,1) }
+}  
