@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './Chat.css'
 import AppContext from '../../Context/AppContext'
 
@@ -13,7 +13,7 @@ export default class Chat extends React.Component {
         const chat =
         this.context.isAuthenticated
         ?
-        <>
+        <div className="chat">
         {this.props.location.props.chatName}
         <div class="bubbleWrapper">
 		<div class="inlineContainer">
@@ -56,7 +56,8 @@ export default class Chat extends React.Component {
 		</div><span class="other">11:11</span>
 	</div>
     <input type="text" value="Type a message to send"/> <button>Send</button>
-        </>
+    <Link to="/swiper">Swipe on games for this group</Link>
+    </div>
         :
         <Redirect to="login"/>
 
