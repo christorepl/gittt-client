@@ -13,19 +13,18 @@ export default class UserDash extends React.Component {
             Your Groups:
                 <ul>
                     <Link to="/chatMike, Tori, Ali">
-                    <li>Mike, Tori, Ali</li>
+                        <li>Mike, Tori, Ali</li>
                     </Link>
 
 
                     <Link to="/chatTori">
-                    <li>Tori</li>
+                        <li>Tori</li>
                     </Link>
                     
                     
                     <Link to="/chatJosh, Alex">
                         <li>Josh, Alex</li>
                     </Link>
-
 
                     <Link to="/chatJosh, Alex, Jake">
                         <li>Josh, Alex, Jake</li>

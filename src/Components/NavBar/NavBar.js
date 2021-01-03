@@ -31,7 +31,7 @@ class NavBar extends React.Component {
                 title: this.context.isAuthenticated ? null : 'Home',
                 path: this.context.isAuthenticated ? null : '/home',
                 icon: this.context.isAuthenticated ? null : <AiIcons.AiOutlineHome/>,
-                className: !this.context.isAuthenticated ? null : 'nav-text'
+                className: this.context.isAuthenticated ? 'nav-hidden' : 'nav-text'
             },
             {
                 title: !this.context.isAuthenticated ? 'Login' : 'Logout',
@@ -41,6 +41,7 @@ class NavBar extends React.Component {
             {
                 // swiping icon - <BsIcons.BsArrowLeftRight/>
                 // chat icon - BsFillChatDotsFill
+                // create account or create group
                 title: !this.context.isAuthenticated ? 'Create Account' : 'Dashboard',
                 path: !this.context.isAuthenticated ? '/create-account' : '/user-dash',
                 icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineUserAdd/> : <GiIcons.GiInvertedDice6/>,
@@ -64,7 +65,7 @@ class NavBar extends React.Component {
                         </Link>
                     </div>
                     {/* INSERT LOGO HERE AND CHANGE navbar class align items <div className="nav-logo">
-                        <img src={logo} alt="a clenched fist with the phrase 'food justice now' in stencil lettering below it, against a backdrop of a crossed fork and knife"/>
+                        <img src={logo} alt=""/>
                     </div> */}
                 </div>
                     <nav className={toggleClass}>
