@@ -116,7 +116,7 @@ class App extends React.Component {
           component={SwipeStack}
         />
         <Route
-          exact path="/chat"
+          exact path="/chat:name"
           component={Chat}
         />
         <Route

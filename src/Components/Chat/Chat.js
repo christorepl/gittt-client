@@ -14,7 +14,7 @@ export default class Chat extends React.Component {
         this.context.isAuthenticated
         ?
         <div className="chat">
-        {this.props.location.props.chatName}
+        {this.props.match.params.name}
         <div class="bubbleWrapper">
 		<div class="inlineContainer">
 			<img class="inlineIcon" src="https://image.freepik.com/free-icon/cat-black-face_318-72914.jpg"/>
