@@ -25,7 +25,7 @@ export default class Login extends React.Component {
                 <input type="password" name="password" required onChange={e => this.context.setPassword(e.target.value)}/>
                 <br/>
                 <button type="submit">Login</button>
-                <p>For testing, try using the these credentials: E-mail: test@test.com - Password: testuser</p>
+                <p>For testing, try using the these credentials: E-mail: test@test.com - Password: test</p>
                 </form>
             </div>
             }
