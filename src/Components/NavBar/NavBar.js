@@ -28,10 +28,10 @@ class NavBar extends React.Component {
 
         const NavBarMenu = [
             {
-                title: 'Home',
-                path: '/home',
-                icon: <AiIcons.AiOutlineHome/>,
-                className: 'nav-text'
+                title: this.context.isAuthenticated ? null : 'Home',
+                path: this.context.isAuthenticated ? null : '/home',
+                icon: this.context.isAuthenticated ? null : <AiIcons.AiOutlineHome/>,
+                className: !this.context.isAuthenticated ? null : 'nav-text'
             },
             {
                 title: !this.context.isAuthenticated ? 'Login' : 'Logout',
