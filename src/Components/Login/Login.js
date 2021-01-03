@@ -12,9 +12,9 @@ export default class Login extends React.Component {
             <>
             {this.context.isAuthenticated
             ?
-            <Redirect to="/home"/>
+            <Redirect to="/user-dash"/>
             :
-            <div className="user-ui">
+            <div className="user-forms">
                 <form className="user-form" onSubmit={(e) => this.context.onSubmitLogin(e)}>
                 <label htmlFor="email">E-mail Address:</label>
                 <br/>

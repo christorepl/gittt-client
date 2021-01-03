@@ -3,7 +3,8 @@ import AppContext from '../../Context/AppContext'
 import { Link } from 'react-router-dom'
 import { IconContext } from 'react-icons'
 import * as AiIcons from 'react-icons/ai'
-import * as BsIcons from 'react-icons/bs'
+// import * as BsIcons from 'react-icons/bs'
+import * as GiIcons from 'react-icons/gi'
 
 class NavBar extends React.Component {
     static contextType = AppContext
@@ -38,12 +39,11 @@ class NavBar extends React.Component {
                 icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineLogin/> : <AiIcons.AiOutlineLogout/>,
             },
             {
-                //replace with chats in full stack version
-                //
-                //BsFillChatDotsFill
-                title: !this.context.isAuthenticated ? 'Create Account' : 'Get To Swiping',
-                path: !this.context.isAuthenticated ? '/create-account' : '/swiper',
-                icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineUserAdd/> : <BsIcons.BsArrowLeftRight/>,
+                // swiping icon - <BsIcons.BsArrowLeftRight/>
+                // chat icon - BsFillChatDotsFill
+                title: !this.context.isAuthenticated ? 'Create Account' : 'Dashboard',
+                path: !this.context.isAuthenticated ? '/create-account' : '/user-dash',
+                icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineUserAdd/> : <GiIcons.GiInvertedDice6/>,
             },
             {
                 title: 'Play During Lockdown?',
@@ -69,6 +69,11 @@ class NavBar extends React.Component {
                 </div>
                     <nav className={toggleClass}>
                         <ul className="navbar-menu-items" onClick={() => this.context.setNavBarToggle(!this.context.navBarToggle)}>
+                        <li className="navbar-toggle">
+                                <Link to="#" className="navbar-icons">
+                                    <AiIcons.AiOutlineClose/>
+                                </Link>
+                            </li>
                             {NavBarMenu.map((item, i) => {
                                 return (
                                     <li key={i} className="nav-text">
@@ -89,11 +94,6 @@ class NavBar extends React.Component {
                                     </li>
                                 )
                             })}
-                            <li className="navbar-toggle">
-                                <Link to="#" className="navbar-icons">
-                                    <AiIcons.AiOutlineClose/>
-                                </Link>
-                            </li>
                         </ul>
                     </nav>
             </IconContext.Provider>
