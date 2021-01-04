@@ -66,10 +66,10 @@ function SwipeStack () {
   }
 
   return (
-    <>
+    <div className="swiper" style={{overflow: 'hidden'}}>
     {games.length
     ?
-    <div>
+    <>
       <div className='cardContainer'>
         {games.map((game, index) =>
           <TinderCard ref={childRefs[index]} className='swipe' key={game.name} onSwipe={(dir) => swiped(dir, game.name)} onCardLeftScreen={() => outOfFrame(game.name)}>
@@ -84,7 +84,7 @@ function SwipeStack () {
         <div onClick={() => swipe('right')}><FaIcons.FaThumbsUp size={50} color={"green"}/></div>
       </div>
       {lastDirection ? <h2 key={lastDirection} className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText'>Swipe on a game or press a button to get started!</h2>}
-    </div>
+    </>
     :
     <div className='cardContainer'>
       <TinderCard className='swipe'onSwipe={() => navAddGames()}>
@@ -94,7 +94,7 @@ function SwipeStack () {
       </TinderCard>  
     </div>
     }
-    </>
+    </div>
   )
 }
 

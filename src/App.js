@@ -99,6 +99,9 @@ class App extends React.Component {
         <Route exact path="/">
           <Redirect to="/home"/>
         </Route>
+        <Route exact path="/amanda-bday">
+          <Redirect to="https://www.broadwayondemand.com/series/MZEd81r8MznR-that-golden-girls-show-a-puppet-parody"/>
+        </Route>
         <Route
           exact path="/create-account"
           component={CreateAccount}

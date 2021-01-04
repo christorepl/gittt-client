@@ -6,6 +6,7 @@ export default class AccountOptions extends React.Component {
             <div className="info">
                 <ul>
                 Delete Your Account
+                </ul>
             </div>
         )
     }
