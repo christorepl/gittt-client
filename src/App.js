@@ -13,7 +13,6 @@ import Logout from './Components/Logout/Logout'
 import AddGames from './Components/AddGames/AddGames'
 import CreateAccount from './Components/CreateAccount/CreateAccount'
 import Chat from './Components/Chat/Chat'
-import bday from './bday'
 
 class App extends React.Component {
   static contextType = AppContext
@@ -100,8 +99,6 @@ class App extends React.Component {
         <Route exact path="/">
           <Redirect to="/home"/>
         </Route>
-        <Route exact path="/amanda-bday"
-        component={bday}/>
         <Route
           exact path="/create-account"
           component={CreateAccount}
