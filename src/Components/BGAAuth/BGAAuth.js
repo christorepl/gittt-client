@@ -22,7 +22,7 @@ export default class BGAAuth extends React.Component {
                 }
             })
             const allRes = await response.json()
-            alert(allRes)
+            console.log(allRes)
         } catch (error) {
             console.error(error.message)
         } 
