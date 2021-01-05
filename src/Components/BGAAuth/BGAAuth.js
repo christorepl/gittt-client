@@ -17,7 +17,7 @@ export default class BGAAuth extends React.Component {
             const response = await fetch("https://api.boardgameatlas.com/oauth/token" ,
             {
                 method: "POST",
-                body,
+                body: JSON.stringify(body),
                 headers: {
                     "content-type": "application/x-www-form-urlencoded"
                 }
