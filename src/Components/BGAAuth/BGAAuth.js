@@ -5,15 +5,23 @@ export default class BGAAuth extends React.Component {
     async componentDidMount() {
         let codeStr = this.props.location.search
         console.log('code string ', codeStr)
-        let code = codeStr.substring(6, codeStr.length)
+        let code = codeStr.substring(6, codeStr.length - 11)
        console.log('code ', code)
-        try {
-            const response = await fetch(API_BASE_URL + 'bga-auth')
-            const allRes = await response.json()
-            alert(allRes)
-        } catch (error) {
-            console.error(error.message)
-        } 
+        // try {
+        //     const response = await fetch('https://api.boardgameatlas.com/oauth/token' ,
+        //     {
+        //         method: 'POST',
+        //         body: JSON.stringify({
+        //             client_id = 'LN1xFTrB6e',
+        //             client_secret = '17c218619e19b928562296f2edbdc711',
+
+        //         })
+        //     })
+        //     const allRes = await response.json()
+        //     alert(allRes)
+        // } catch (error) {
+        //     console.error(error.message)
+        // } 
 
     }
     // async componentDidMount() {
