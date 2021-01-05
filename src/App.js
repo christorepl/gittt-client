@@ -119,7 +119,7 @@ class App extends React.Component {
           component={AddBGA}
         />
         <Route
-          exact path="bga-auth"
+          exact path="/bga-auth:auth-code"
           component={BGAAuth}
         />
         <Route
