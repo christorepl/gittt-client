@@ -4,13 +4,14 @@ import API_BASE_URL from "../../config"
 export default class BGAAuth extends React.Component {
     async componentDidMount() {
         let codeStr = this.props.location.search
+        console.log(codeStr)
         let code = codeStr.substring(6, codeStr.length - 11)
         console.log(code)
         const body = {
             "client_id": "LN1xFTrB6e",
             "client_secret": "17c218619e19b928562296f2edbdc711",
             "code" : code,
-            "redirect_uri": "https://get-it-to-the-table.vercel.app/bga-auth/go",
+            "redirect_uri": "https://get-it-to-the-table.vercel.app/bga-auth",
             "grant_type": "authorization_code"
         }
         // try {
