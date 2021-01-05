@@ -11,11 +11,11 @@ export default class BGAAuth extends React.Component {
             {
                 method: 'POST',
                 body: JSON.stringify({
-                    client_id = 'LN1xFTrB6e',
-                    client_secret = '17c218619e19b928562296f2edbdc711',
+                    client_id: 'LN1xFTrB6e',
+                    client_secret: '17c218619e19b928562296f2edbdc711',
                     codeStr,
-                    redirect_uri = 'https://get-it-to-the-table.vercel.app/bga-auth',
-                    grant_type = "authorization_code"
+                    redirect_uri: 'https://get-it-to-the-table.vercel.app/bga-auth',
+                    grant_type: "authorization_code"
                 }),
                 headers: {
                     "content-type": "application/x-www-form-urlencoded"
