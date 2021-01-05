@@ -10,13 +10,13 @@ export default class BGAAuth extends React.Component {
             const response = await fetch("https://api.boardgameatlas.com/oauth/token" ,
             {
                 method: "POST",
-                body: JSON.stringify({
+                body: {
                     client_id: "LN1xFTrB6e",
                     client_secret: "17c218619e19b928562296f2edbdc711",
                     code,
                     redirect_uri: "https://get-it-to-the-table.vercel.app/bga-auth",
                     grant_type: "authorization_code"
-                }),
+                },
                 headers: {
                     "content-type": "application/x-www-form-urlencoded"
                 }
