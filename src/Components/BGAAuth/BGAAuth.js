@@ -33,7 +33,7 @@ export default class BGAAuth extends React.Component {
             headers: {
                 "content-type": "application/x-www-form-urlencoded"
             },
-            body: JSON.stringify(body)
+            body
         }).then(response => {
             if (response.ok) {
                 response.json().then(json => {
