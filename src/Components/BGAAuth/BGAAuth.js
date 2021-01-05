@@ -12,7 +12,7 @@ export default class BGAAuth extends React.Component {
             code,
             redirect_uri: "https://get-it-to-the-table.vercel.app/bga-auth",
             grant_type: "authorization_code"
-        },
+        }
         try {
             const response = await fetch("https://api.boardgameatlas.com/oauth/token" ,
             {
