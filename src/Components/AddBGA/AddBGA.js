@@ -4,7 +4,7 @@ import API_BASE_URL from '../../config'
 export default class AddBGA extends React.Component {
     async componentDidMount() {
         try {
-            const response = await fetch(API_BASE_URL + '/bga-auth')
+            const response = await fetch(API_BASE_URL + '/add-bga')
             const allRes = await response.json()
             alert(allRes)
         } catch (error) {
