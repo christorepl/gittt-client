@@ -8,7 +8,7 @@ export default class BGAAuth extends React.Component {
         let code = codeStr.substring(6, codeStr.length)
        console.log('code ', code)
         try {
-            const response = await fetch(API_BASE_URL + '/bga-auth')
+            const response = await fetch(API_BASE_URL + 'bga-auth')
             const allRes = await response.json()
             alert(allRes)
         } catch (error) {
