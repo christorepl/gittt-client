@@ -119,7 +119,7 @@ class App extends React.Component {
           component={AddBGA}
         />
         <Route
-          exact path="/bga-auth:auth-code"
+          path="/bga-auth"
           component={BGAAuth}
         />
         <Route
@@ -127,7 +127,7 @@ class App extends React.Component {
           component={SwipeStack}
         />
         <Route
-          exact path="/chat:name"
+          exact path="/chat/:name"
           component={Chat}
         />
         <Route
