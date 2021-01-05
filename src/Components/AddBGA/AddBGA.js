@@ -13,22 +13,18 @@ export default class AddBGA extends React.Component {
     //     } 
     // }
     bgaAuth = async () => {
-        var options = {
-            method: 'GET',
-            url: 'https://api.boardgameatlas.com/oauth/authorize?response_type=code&client_id=LN1xFTrB6e&redirect_uri=https://get-it-to-the-table.vercel.app/bga-auth/',
-            params: {state: null},
-        }
-        axios.request(options).then(function (response) {
-            console.log(response)
-        }).catch(function (error) {
+        try {
+            const response = await fetch('https://api.boardgameatlas.com/oauth/authorize?response_type=code&client_id=LN1xFTrB6e&redirect_uri=https://get-it-to-the-table.vercel.app/bga-auth/')
+            const res = await response.json()
+        } catch (error) {
             console.error(error)
-        })
+        }
     }
     render() {
         return(
             <div className="info">
                 add bga
-                <button onClick={() => this.bgaAuth()}>add bga button</button>
+                <a href="https://api.boardgameatlas.com/oauth/authorize?response_type=code&client_id=LN1xFTrB6e&redirect_uri=https://get-it-to-the-table.vercel.app/bga-auth&state=null/" target="_blank" rel="noopener noreferrer"><button>add bga button</button></a>
             </div>
         )
     }
