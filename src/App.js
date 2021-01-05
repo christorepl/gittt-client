@@ -14,6 +14,7 @@ import AddGames from './Components/AddGames/AddGames'
 import CreateAccount from './Components/CreateAccount/CreateAccount'
 import Chat from './Components/Chat/Chat'
 import AddBGA from './Components/AddBGA/AddBGA'
+import BGAAuth from './Components/BGAAuth/BGAAuth'
 
 class App extends React.Component {
   static contextType = AppContext
@@ -116,6 +117,10 @@ class App extends React.Component {
         <Route
           exact path="/add-bga"
           component={AddBGA}
+        />
+        <Route
+          exact path="bga-auth"
+          component={BGAAuth}
         />
         <Route
           exact path="/swiper"
