@@ -325,10 +325,9 @@ li {
 }
 
 .info {
-  top: 5em;
   position: absolute;
+  top: 3em;
   overflow-y: auto !important;
-  height: 100%;
   width: 80%;
 }
 

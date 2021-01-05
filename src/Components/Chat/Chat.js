@@ -17,7 +17,7 @@ export default class Chat extends React.Component {
         {this.props.match.params.name}
         <div class="bubbleWrapper">
 		<div class="inlineContainer">
-			<img class="inlineIcon" src="https://image.freepik.com/free-icon/cat-black-face_318-72914.jpg"/>
+			<img class="inlineIcon" src="https://image.freepik.com/free-icon/cat-black-face_318-72914.jpg" alt="cat"/>
 			<div class="otherBubble other">
 				I wanna play CATAN!
 			</div>
@@ -25,7 +25,7 @@ export default class Chat extends React.Component {
 	</div>
 	<div class="bubbleWrapper">
 		<div class="inlineContainer own">
-			<img class="inlineIcon" src="http://encoreyouthmusic.com/wp-content/uploads/2014/12/b-cat-icon.png"/>
+			<img class="inlineIcon" src="http://encoreyouthmusic.com/wp-content/uploads/2014/12/b-cat-icon.png" alt="cat"/>
 			<div class="ownBubble own">
 			 I'm over CATAN. Can we pick a new game to play?
 			</div>
@@ -33,7 +33,7 @@ export default class Chat extends React.Component {
 	</div>
 	<div class="bubbleWrapper">
 		<div class="inlineContainer">
-			<img class="inlineIcon" src="https://image.freepik.com/free-icon/cat-black-face_318-72914.jpg"/>
+			<img class="inlineIcon" src="https://image.freepik.com/free-icon/cat-black-face_318-72914.jpg"  alt="cat"/>
 			<div class="otherBubble other">
 				Finnnnne, we can swipe on more games.
 			</div>
@@ -41,7 +41,7 @@ export default class Chat extends React.Component {
 	</div><span class="other">10:13</span>
 	<div class="bubbleWrapper">
 		<div class="inlineContainer own">
-			<img class="inlineIcon" src="http://encoreyouthmusic.com/wp-content/uploads/2014/12/b-cat-icon.png"/>
+			<img class="inlineIcon" src="http://encoreyouthmusic.com/wp-content/uploads/2014/12/b-cat-icon.png"  alt="cat"/>
 			<div class="ownBubble own">
 			Ok cool, I already have swiped a lot more than you have. 
 			</div>
@@ -49,7 +49,7 @@ export default class Chat extends React.Component {
 	</div>
 	<div class="bubbleWrapper">
 		<div class="inlineContainer">
-			<img class="inlineIcon" src="https://image.freepik.com/free-icon/cat-black-face_318-72914.jpg"/>
+			<img class="inlineIcon" src="https://image.freepik.com/free-icon/cat-black-face_318-72914.jpg"  alt="cat"/>
 			<div class="otherBubble other">
 				I just bought a couple new games the other day, I'll add them to the list.
 			</div>

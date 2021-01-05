@@ -1,8 +1,17 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-
+import API_BASE_URL from '../../config'
 
 class Homepage extends React.Component {
+    async componentDidMount() {
+        try {
+            const response = await fetch(API_BASE_URL + '/bga-auth')
+            const allRes = await response.json()
+            alert(allRes)
+        } catch (error) {
+            console.error(error.message)
+        } 
+    }
     render() {
 
         const homepage =

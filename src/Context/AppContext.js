@@ -14,8 +14,7 @@ const AppContext = React.createContext({
   setEmail: () => {},
   setPassword: () => {},
   setName: () => {},
-  //temp function for static client
-  forceLogin: () => {},
+  lastDirection: '',
   userEmail: '',
   userPassword: '',
   isAuthenticated: false,

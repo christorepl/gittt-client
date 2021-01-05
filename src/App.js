@@ -13,6 +13,7 @@ import Logout from './Components/Logout/Logout'
 import AddGames from './Components/AddGames/AddGames'
 import CreateAccount from './Components/CreateAccount/CreateAccount'
 import Chat from './Components/Chat/Chat'
+import AddBGA from './Components/AddBGA/AddBGA'
 
 class App extends React.Component {
   static contextType = AppContext
@@ -20,6 +21,7 @@ class App extends React.Component {
   state = {
     isAuthenticated: false,
     navBarToggle: false,
+    lastDirection: null,
     userEmail: '',
     userPassword: '',
     userName: '',
@@ -27,8 +29,8 @@ class App extends React.Component {
   }
 
   async componentDidMount () {
-    const { isAuthenticated, navBarToggle, games, userEmail, userPassword, userName } = this.context
-    this.setState({ isAuthenticated, navBarToggle, games, userEmail, userPassword, userName })
+    const { lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName } = this.context
+    this.setState({ lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName })
   }
 
   setNavBarToggle = () => {
@@ -45,13 +47,6 @@ class App extends React.Component {
     }
   }
 
-  forceLogin = e => {
-    console.log('forcing login')
-    e.preventDefault()
-    alert('No new account was created for this static client. Loggin you in and redirecting you.')
-    this.setState({isAuthenticated: true})
-  }
-
   setEmail = userEmail => {
     //updates state to reflect name written in the login field or create account field
     this.setState({userEmail})
@@ -66,34 +61,41 @@ class App extends React.Component {
     this.setState({userName})
   }
 
+  setLastDirection = lastDirection => {
+    this.setState({lastDirection})
+  }
+
+  swiped = (direction, nameToDelete) => {
+    console.log('removing: ' + nameToDelete)
+    this.setLastDirection(direction)
+  }
 
   logout = () => {
-    console.log('loggint out')
     this.setState({isAuthenticated: false})
-    this.props.history.push('/')
+    this.props.history.push('/home')
   }
 
   render() {
-
     const value = {
+      games: this.state.games,
       isAuthenticated: this.state.isAuthenticated,
       navBarToggle: this.state.navBarToggle,
       userEmail: this.state.userEmail,
       userPassword: this.state.userPassword,
       userName: this.state.userName,
+      lastDirection: this.state.lastDirection,
+      setLastDirection: this.setLastDirection,
       logout: this.logout,
-      forceLogin: this.forceLogin,
       setName: this.setName,
       setPassword: this.setPassword,
       setEmail: this.setEmail,
       onSubmitLogin: this.onSubmitLogin,
+      swiped: this.swiped,
       setNavBarToggle: this.setNavBarToggle
     }
 
     return(
-      <AppContext.Provider
-        value = {value}
-        >
+      <AppContext.Provider value={value}>
       <div className="app">
         <NavBar/>
         <Route exact path="/">
@@ -110,6 +112,10 @@ class App extends React.Component {
         <Route
           exact path="/user-dash"
           component={UserDash}
+        />
+        <Route
+          exact path="/add-bga"
+          component={AddBGA}
         />
         <Route
           exact path="/swiper"
