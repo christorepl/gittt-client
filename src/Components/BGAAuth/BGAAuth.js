@@ -1,7 +1,8 @@
 import React from 'react'
+import API_BASE_URL from '../../config'
 
 export default class BGAAuth extends React.Component {
-    componentDidMount() {
+   async componentDidMount() {
         try {
             const response = await fetch(API_BASE_URL + '/bga-auth')
             const allRes = await response.json()
