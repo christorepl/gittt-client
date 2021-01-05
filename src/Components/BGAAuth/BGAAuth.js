@@ -5,7 +5,7 @@ export default class BGAAuth extends React.Component {
     async componentDidMount() {
         let codeStr = this.props.location.search.substring(6, codeStr.length - 11)
         // let code = codeStr
-        console.log(code)
+        console.log(codeStr)
         try {
             const response = await fetch('https://api.boardgameatlas.com/oauth/token' ,
             {
