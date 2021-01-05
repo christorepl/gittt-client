@@ -24,7 +24,7 @@ export default class AddBGA extends React.Component {
         return(
             <div className="info">
                 add bga
-                <a href="https://api.boardgameatlas.com/oauth/authorize?response_type=code&client_id=LN1xFTrB6e&redirect_uri=https://get-it-to-the-table.vercel.app/bga-auth/" target="_blank" rel="noopener noreferrer"><button>add bga button</button></a>
+                <a href="https://api.boardgameatlas.com/oauth/authorize?response_type=code&client_id=LN1xFTrB6e&state=null&redirect_uri=https://get-it-to-the-table.vercel.app/bga-auth/"><button>add bga button</button></a>
             </div>
         )
     }
