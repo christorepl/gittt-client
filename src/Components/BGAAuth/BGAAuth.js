@@ -5,12 +5,12 @@ export default class BGAAuth extends React.Component {
     async componentDidMount() {
         let codeStr = this.props.location.search
         console.log(codeStr)
-        let code = codeStr.substring(6, codeStr.length - 11)
+        let code = codeStr.substring(6, codeStr.length)
         console.log(code)
         const body = {
             "client_id": "LN1xFTrB6e",
             "client_secret": "17c218619e19b928562296f2edbdc711",
-            // "code" : code,
+            "code" : code,
             "redirect_uri": "https://get-it-to-the-table.vercel.app/bga-auth",
             "grant_type": "authorization_code"
         }
