@@ -13,20 +13,36 @@ export default class BGAAuth extends React.Component {
             "redirect_uri": "https://get-it-to-the-table.vercel.app/bga-auth",
             "grant_type": "authorization_code"
         }
-        try {
-            const response = await fetch("https://api.boardgameatlas.com/oauth/token" ,
-            {
-                method: "POST",
-                body: JSON.stringify(body),
-                headers: {
-                    "content-type": "application/x-www-form-urlencoded"
-                }
-            })
-            const allRes = await response.json()
-            console.log(allRes)
-        } catch (error) {
-            console.error(error.message)
-        } 
+        // try {
+        //     const response = await fetch("https://api.boardgameatlas.com/oauth/token" ,
+        //     {
+        //         method: "POST",
+        //         body: JSON.stringify(body),
+        //         headers: {
+        //             "content-type": "application/x-www-form-urlencoded"
+        //         }
+        //     })
+        //     const allRes = await response.json()
+        //     console.log(allRes)
+        // } catch (error) {
+        //     console.error(error.message)
+        // } 
+
+        fetch("https://api.boardgameatlas.com/oauth/token", {
+            method: "POST",
+            headers: {
+                "content-type": "application/x-www-form-urlencoded"
+            },
+            body: JSON.stringify(body)
+        }).then(response => {
+            if (response.ok) {
+                response.json().then(json => {
+                    console.log(json)
+                })
+            }
+        }).catch(function(error) {
+            console.log(error)
+        })
 
     }
     // async componentDidMount() {
