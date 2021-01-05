@@ -16,7 +16,10 @@ export default class BGAAuth extends React.Component {
                     codeStr,
                     redirect_uri = 'https://get-it-to-the-table.vercel.app/bga-auth',
                     grant_type = "authorization_code"
-                })
+                }),
+                headers: {
+                    "content-type": "application/x-www-form-urlencoded"
+                }
             })
             const allRes = await response.json()
             alert(allRes)
