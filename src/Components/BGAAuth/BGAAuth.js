@@ -21,7 +21,7 @@ export default class BGAAuth extends React.Component {
             }).then(response => {
                 if (response.ok) {
                     response.json().then(json =>{
-                        console.log('succes ', json)
+                        console.log('success ', json)
                     })
                 }
             }).catch(function(error) {
