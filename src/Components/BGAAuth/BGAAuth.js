@@ -19,7 +19,7 @@ export default class BGAAuth extends React.Component {
                 "content-type": "application/x-www-form-urlencoded"
             },
             body: 
-                `client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&grant_type=${grant_type}`
+                `client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&grant_type=${grant_type}&code=${code}`
             
         }).then(response => {
             if (response.ok) {
