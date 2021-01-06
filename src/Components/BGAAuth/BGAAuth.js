@@ -20,7 +20,6 @@ export default class BGAAuth extends React.Component {
             },
             body: 
                 `client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&grant_type=${grant_type}&code=${code}`
-            
         }).then(response => {
             if (response.ok) {
                 response.json().then(json => {
