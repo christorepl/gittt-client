@@ -17,9 +17,8 @@ export default class BGAAuth extends React.Component {
                 "method": "POST",
                 "header": [
                     {
-                        "key": "content-type",
-                        "value": "application/x-www-form-urlencoded",
-                        "type": "text"
+                        "content-type": "application/x-www-form-urlencoded",
+
                     }
                 ],
                 "body": {
