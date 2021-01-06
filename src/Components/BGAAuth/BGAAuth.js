@@ -5,7 +5,7 @@ export default class BGAAuth extends React.Component {
     async componentDidMount() {
         let codeStr = this.props.location.search
         console.log(codeStr)
-        let code = codeStr.substring(6, codeStr.length - 11)
+        let code = codeStr.substring(6, codeStr.length)
         console.log(code)
         const body = {
             "client_id": "LN1xFTrB6e",
