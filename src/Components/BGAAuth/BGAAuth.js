@@ -9,20 +9,20 @@ export default class BGAAuth extends React.Component {
         console.log(codeStr)
         let code = codeStr.substring(6, codeStr.length)
         console.log(code)
-        const body = {
-            "client_id": "LN1xFTrB6e",
-            "client_secret": "17c218619e19b928562296f2edbdc711",
-            "code" : code,
-            "redirect_uri": "https://get-it-to-the-table.vercel.app/bga-auth/",
-            "grant_type": "authorization_code"
-        }
+        let client_id= "LN1xFTrB6e"
+        let client_secret = "17c218619e19b928562296f2edbdc711"
+        let redirect_uri= "https://get-it-to-the-table.vercel.app/bga-auth/"
+        let grant_type ="authorization_code"
         fetch('https://api.boardgameatlas.com/oauth/token', {
             method: "POST",
             headers: {
                 "content-type": "application/x-www-form-urlencoded"
             },
             form: {
-                body
+                client_id,
+                client_secret,
+                redirect_uri,
+                grant_type
             }
         }).then(response => {
             if (response.ok) {
@@ -35,13 +35,6 @@ export default class BGAAuth extends React.Component {
         })
 
     }
-    // async componentDidMount() {
-    //     try {
-            
-    //     } catch (error) {
-            
-    //     }
-    // }
     render() {
         return(
             <div className="info">
