@@ -1,6 +1,8 @@
 import React from "react"
 import API_BASE_URL from "../../config"
 
+
+
 export default class BGAAuth extends React.Component {
     async componentDidMount() {
         let codeStr = this.props.location.search
@@ -11,31 +13,17 @@ export default class BGAAuth extends React.Component {
             "client_id": "LN1xFTrB6e",
             "client_secret": "17c218619e19b928562296f2edbdc711",
             "code" : code,
-            "redirect_uri": "https://get-it-to-the-table.vercel.app/bga-auth",
+            "redirect_uri": "https://get-it-to-the-table.vercel.app/bga-auth/",
             "grant_type": "authorization_code"
-            // "grant_type": "client_credentials"
         }
-        // try {
-        //     const response = await fetch("https://api.boardgameatlas.com/oauth/token" ,
-        //     {
-        //         method: "POST",
-        //         body: JSON.stringify(body),
-        //         headers: {
-        //             "content-type": "application/x-www-form-urlencoded"
-        //         }
-        //     })
-        //     const allRes = await response.json()
-        //     console.log(allRes)
-        // } catch (error) {
-        //     console.error(error.message)
-        // } 
-
-        fetch("https://api.boardgameatlas.com/oauth/token", {
+        fetch('https://api.boardgameatlas.com/oauth/token', {
             method: "POST",
             headers: {
                 "content-type": "application/x-www-form-urlencoded"
             },
-            body: JSON.stringify(body)
+            form: {
+                body
+            }
         }).then(response => {
             if (response.ok) {
                 response.json().then(json => {
