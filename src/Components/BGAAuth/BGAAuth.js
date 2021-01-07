@@ -5,26 +5,26 @@ import axios from 'axios'
 
 export default class BGAAuth extends React.Component {
     async componentDidMount() {
+        try {
         let codeStr = this.props.location.search
+        console.log('codestr: ', codeStr)
         let code = codeStr.substring(6, codeStr.length)
+        console.log('parsed code: ', code)
         //send code with the POST request to the API
         const body = { code }
-        var options = {
-            method: 'POST',
-            url: API_BASE_URL + '/bga-auth/auth',
+        const response = await fetch(API_BASE_URL + '/bga-auth/auth', {
+            method: "POST",
             headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify(body)
-        }
-
-        axios.request(options).then(function (response) {
-            console.log(response)
-        }).catch(function (error) {
-            console.error(error)
         })
-    
 
+        const parseRes = await response.json()
+        console.log(parseRes)
+        } catch(err) {
+            console.error('local error: ', err)
+        }
         // try {
         //     const response = await fetch(API_BASE_URL + "/bga-auth/auth", {
         //         method: "POST",
