@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect, Route, withRouter } from 'react-router-dom'
 import './App.css'
+import API_BASE_URL from './config'
 import AppContext from './Context/AppContext'
 import SwipeStack from './Components/SwipeStack/SwipeStack'
 import UserDash from './Components/UserDash/UserDash'
@@ -13,8 +14,8 @@ import Logout from './Components/Logout/Logout'
 import AddGames from './Components/AddGames/AddGames'
 import CreateAccount from './Components/CreateAccount/CreateAccount'
 import Chat from './Components/Chat/Chat'
-import AddBGA from './Components/AddBGA/AddBGA'
-import BGAAuth from './Components/BGAAuth/BGAAuth'
+// import AddBGA from './Components/AddBGA/AddBGA'
+// import BGAAuth from './Components/BGAAuth/BGAAuth'
 
 class App extends React.Component {
   static contextType = AppContext
@@ -23,43 +24,63 @@ class App extends React.Component {
     isAuthenticated: false,
     navBarToggle: false,
     lastDirection: null,
+    BGAName: '',
+    //user_name stores the logged in user's name, userName stores the name entered into forms
+    user_name: '',
+    userName: '',
     userEmail: '',
     userPassword: '',
-    userName: '',
     games: []
   }
 
   async componentDidMount () {
-    const { lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName } = this.context
-    this.setState({ lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName })
+    const { BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName } = this.context
+    this.setState({ BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName })
   }
 
   setNavBarToggle = () => {
     this.setState({navBarToggle: !this.state.navBarToggle})
   }
 
-  onSubmitLogin = (e) => {
+  onSubmitLogin = async(e) => {
     e.preventDefault()
-    console.log('logging in')
-    if (this.state.userEmail === 'test@test.com' && this.state.userPassword === 'test') {
-      this.setState({isAuthenticated: true})
-    } else {
-      alert('Invalid credentials. Please try again.')
-    }
-  }
+    try {
 
-  setEmail = userEmail => {
+        const { email, password } = this.state
+        const body = { email, password }
+        const response = await fetch(API_BASE_URL + "auth/login", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(body)
+        })
+
+        const parseRes = await response.json()
+        const user_name = parseRes.user_name
+        
+        if(parseRes.jwt_token) {
+            localStorage.setItem("jwt_token", parseRes.jwt_token)
+            this.loginUser('login', user_name)
+        }  else {
+            this.loginUser(parseRes)
+        }
+
+    } catch (err){
+        console.error(err.message)
+    }
+}
+
+  setEmail = email => {
     //updates state to reflect name written in the login field or create account field
-    this.setState({userEmail})
+    this.setState({email})
   }
   
-  setPassword = userPassword => {
+  setPassword = password => {
     //updates state to reflect the password written in the login field or create account field
-    this.setState({userPassword})
+    this.setState({password})
   }
 
-  setName = userName => {
-    this.setState({userName})
+  setName = user_name => {
+    this.setState({user_name})
   }
 
   setLastDirection = lastDirection => {
@@ -76,6 +97,57 @@ class App extends React.Component {
     this.props.history.push('/home')
   }
 
+  createAccount = async (e) => {
+    e.preventDefault()
+
+    try {
+      const { email, user_name, password } = this.state
+      const body = { email, user_name, password }
+    
+      const response = await fetch(API_BASE_URL + "auth/register", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+      })
+
+      const parseRes = await response.json()
+      const new_user_name = parseRes.new_user_name
+      
+      // localStorage.setItem("jwt_token", parseRes.jwt_token)
+      
+      if(parseRes.jwt_token) {
+        localStorage.setItem("jwt_token", parseRes.jwt_token)
+        this.loginUser('create', new_user_name)
+    }  else {
+        this.loginUser(parseRes)
+    }
+
+
+    } catch(err) {
+      console.error(err.message)
+    }
+  }
+
+  loginUser = async(attempt, user_name) => {
+    // logs in the user
+    if (attempt === 'login'){
+      alert('Login successful')
+      this.setState({ isAuthenticated: true, user_name })
+    } else if (attempt === 'create') {
+      alert('Account creation successful! You are now logged in.')
+      this.setState({ isAuthenticated: true, user_name })
+    } else {
+      alert(attempt)
+      this.setState({ isAuthenticated: false })
+    }
+  }
+
+
+
+  setBGAName = BGAName => {
+    this.setState({BGAName})
+  }
+
   render() {
     const value = {
       games: this.state.games,
@@ -85,6 +157,10 @@ class App extends React.Component {
       userPassword: this.state.userPassword,
       userName: this.state.userName,
       lastDirection: this.state.lastDirection,
+      BGAName: this.state.BGAName,
+      user_name: this.state.user_name,
+      createAccount: this.createAccount,
+      setBGAName: this.setBGAName,
       setLastDirection: this.setLastDirection,
       logout: this.logout,
       setName: this.setName,
@@ -114,14 +190,14 @@ class App extends React.Component {
           exact path="/user-dash"
           component={UserDash}
         />
-        <Route
+        {/* <Route
           exact path="/add-bga"
           component={AddBGA}
         />
         <Route
           path="/bga-auth"
           component={BGAAuth}
-        />
+        /> */}
         <Route
           exact path="/swiper"
           component={SwipeStack}

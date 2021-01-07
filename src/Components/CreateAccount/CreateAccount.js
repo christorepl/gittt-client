@@ -8,9 +8,11 @@ export default class CreateAccount extends React.Component {
         const createAccount = 
         this.context.isAuthenticated 
         ? 
-        <Redirect to="/home"/>
+        <Redirect to="/user-dash"/>
         :
-        <form className="user-form" onSubmit={(e) => this.context.forceLogin(e)}>
+        <>
+        <h3>Create Account</h3>
+        <form className="user-form" onSubmit={(e) => this.context.createAccount(e)}>
             <label htmlFor="name">Name:</label>
             <br/>
             <input type="text" name="name" required onChange={e => this.context.setName(e.target.value)}/>
@@ -25,10 +27,11 @@ export default class CreateAccount extends React.Component {
             <br/>
             <button type="submit">Create Account</button>
         </form>
+        </>
 
 
         return(
-            <div className="user-forms">
+            <div>
                 {createAccount}
             </div>
         )

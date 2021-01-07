@@ -321,7 +321,10 @@ span {
 }
 
 li {
-  list-style: none
+  list-style: none;
+  list-style-position: inside;
+  text-align: center;
+  margin-left: -45px
 }
 
 .info {
@@ -329,6 +332,10 @@ li {
   top: 3em;
   overflow-y: auto !important;
   width: 80%;
+}
+
+.user-form {
+  margin-top: 5em;
 }
 
 
