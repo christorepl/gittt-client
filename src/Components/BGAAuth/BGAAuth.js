@@ -7,16 +7,15 @@ export default class BGAAuth extends React.Component {
     async componentDidMount() {
         let codeStr = this.props.location.search
         let code = codeStr.substring(6, codeStr.length)
-
+        //send code with the POST request to the API
+        const body = { code }
         var options = {
             method: 'POST',
             url: API_BASE_URL + '/bga-auth/auth',
             headers: {
                 "content-type": "application/json"
             },
-            body: {
-                code
-            }
+            body: JSON.stringify(body)
         }
 
         axios.request(options).then(function (response) {
@@ -26,7 +25,6 @@ export default class BGAAuth extends React.Component {
         })
     
 
-        //send code with the POST request to the API
         // try {
         //     const response = await fetch(API_BASE_URL + "/bga-auth/auth", {
         //         method: "POST",
