@@ -5,13 +5,9 @@ export default class BGAAuth extends React.Component {
     async componentDidMount() {
         try {
         let codeStr = this.props.location.search
-        console.log('codestr: ', codeStr)
         let code = codeStr.substring(6, codeStr.length)
-        console.log('parsed code: ', code)
         //send code with the POST request to the API
         const body = { code }
-        console.log(body)
-        console.log(JSON.stringify(body))
         const response = await fetch(API_BASE_URL + '/bga-auth/auth', {
             method: "POST",
             headers: {
@@ -21,7 +17,7 @@ export default class BGAAuth extends React.Component {
         })
 
         const parseRes = await response.json()
-        console.log(parseRes)
+        console.log('respose ', parseRes)
         } catch(err) {
             console.error('local error: ', err)
         }
