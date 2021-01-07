@@ -5,7 +5,7 @@ export default class BGAAuth extends React.Component {
     async componentDidMount() {
         try {
         let codeStr = this.props.location.search
-        let code = codeStr.substring(6, codeStr.length)
+        let code = codeStr.substring(6, codeStr.length - 42)
         //send code with the POST request to the API
         const body = { code }
         console.log(code, ' the code')
