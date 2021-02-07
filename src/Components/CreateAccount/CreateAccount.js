@@ -5,10 +5,12 @@ import AppContext from '../../Context/AppContext'
 export default class CreateAccount extends React.Component {
     static contextType = AppContext
     render() {
+
+
         const createAccount = 
         this.context.isAuthenticated 
         ? 
-        <Redirect to="/user-dash"/>
+        <Redirect to="/"/>
         :
         <>
         <h3>Create Account</h3>

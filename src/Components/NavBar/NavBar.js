@@ -8,9 +8,6 @@ import * as GiIcons from 'react-icons/gi'
 
 class NavBar extends React.Component {
     static contextType = AppContext
-
-    
-    
     render() {
 
        const NavBarContact = [
@@ -34,22 +31,14 @@ class NavBar extends React.Component {
                 className: 'nav-text'
             },
             {
-                title: !this.context.isAuthenticated ? 'Login' : 'Logout',
-                path: !this.context.isAuthenticated ? '/login' : '/logout',
-                icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineLogin/> : <AiIcons.AiOutlineLogout/>,
-            },
-            {
-                // swiping icon - <BsIcons.BsArrowLeftRight/>
-                // chat icon - BsFillChatDotsFill
-                // create account or create group
                 title: !this.context.isAuthenticated ? 'Create Account' : 'Dashboard',
                 path: !this.context.isAuthenticated ? '/create-account' : '/user-dash',
                 icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineUserAdd/> : <GiIcons.GiInvertedDice6/>,
             },
             {
-                title: 'Play During Lockdown?',
-                path: '/how-to-play',
-                icon: <AiIcons.AiOutlineQuestionCircle/>
+                title: !this.context.isAuthenticated ? 'Login' : 'Logout',
+                path: !this.context.isAuthenticated ? '/login' : '/logout',
+                icon: !this.context.isAuthenticated ? <AiIcons.AiOutlineLogin/> : <AiIcons.AiOutlineLogout/>,
             }
         ]
 
@@ -57,7 +46,7 @@ class NavBar extends React.Component {
 
         return (
             <>
-            <IconContext.Provider value={{color: 'white'}}>
+            <IconContext.Provider value={{color: 'black'}}>
                 <div className="navbar">
                     <div className="nav-bars">
                         <Link to="#" className="navbar-icons">
@@ -71,16 +60,16 @@ class NavBar extends React.Component {
                     <nav className={toggleClass}>
                         <ul className="navbar-menu-items" onClick={() => this.context.setNavBarToggle(!this.context.navBarToggle)}>
                         <li className="navbar-toggle">
-                                <Link to="#" className="navbar-icons">
+                                <Link to="#" className="navbar-close">
                                     <AiIcons.AiOutlineClose/>
                                 </Link>
-                            </li>
+                        </li>
                             {NavBarMenu.map((item, i) => {
                                 return (
                                     <li key={i} className="nav-text">
                                         <Link to={item.path}>
                                                 {item.icon}
-                                            <span>{item.title}</span>
+                                            <span className="nav-span">{item.title}</span>
                                         </Link>
                                     </li>
                                 )
@@ -90,7 +79,7 @@ class NavBar extends React.Component {
                                     <li key={'contact' + i} className="nav-text">
                                         <a href={item.path} target="_blank" rel="noopener noreferrer">
                                             {item.icon}
-                                        <span>{item.title}</span>
+                                        <span className="nav-span">{item.title}</span>
                                         </a>
                                     </li>
                                 )

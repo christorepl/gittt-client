@@ -17,12 +17,14 @@ export default class BGAAuth extends React.Component {
         })
 
         const parseRes = await response.json()
-        console.log('respose ', parseRes)
+        // console.log('respose ', parseRes)
         } catch(err) {
-            console.error('local error: ', err)
+            console.error('local error: ', err.message)
         }
     }
     render() {
+
+
         return(
             <div className="info">
                 bga auth page

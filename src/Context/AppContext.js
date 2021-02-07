@@ -1,8 +1,11 @@
 import React from 'react'
-import STORE from '../STORE/STORE'
 
 const AppContext = React.createContext({
-  games: STORE.games,
+  addListToGroup: () => {},
+  handleGroupSelection: () => {},
+  setNewGroupName: () => {},
+  createGroup: () => {},
+  handleContactSelection: () => {},
   setNavBarToggle: () => {},
   swiped: () => {},
   outOfFrame: () => {},
@@ -15,7 +18,27 @@ const AppContext = React.createContext({
   setPassword: () => {},
   setName: () => {},
   setBGAName: () => {},
+  setBGAListName: () => {},
+  setBGAListID: () => {},
+  getBGAUserLists: () => {},
+  getBGAList: () => {},
   createAccount: () => {},
+  onSubmitNewContact: () => {},
+  setContactID: () => {},
+  setContactName: () => {},
+  getContacts: () => {},
+  checkAuth: () => {},
+  goToSwipeGroup: () => {},
+  getGamesForSwiper: () => {},
+  games: [],
+  selectedContacts: [],
+  userGroupData: [],
+  lists: [],
+  selectedList: '',
+  groups: [],
+  selectedGroup: '',
+  user_id: '',
+  contacts: [],
   user_name: '',
   BGAName: '',
   lastDirection: '',
@@ -23,7 +46,7 @@ const AppContext = React.createContext({
   userEmail: '',
   userPassword: '',
   isAuthenticated: false,
-  navBarToggle: false,
+  navBarToggle: false
 })
 
 export default AppContext

@@ -1,42 +1,63 @@
 import React from 'react'
 import AppContext from '../../Context/AppContext'
 // import TinderCard from '../react-tinder-card/index'
-import * as FaIcons from 'react-icons/fa'
 import TinderCard from 'react-tinder-card'
 
 export default class SwipeStack extends React.Component {
   static contextType = AppContext
-  render() {
-  
-  const games = this.context.games.map(game => ({
-    name: game.name,
-    url: game.url
-  }))
 
-  const outOfFrame = (name) => {
-    console.log(name + ' left the screen!')
+
+  componentDidMount () {
+    this.context.checkAuth()
+    this.context.setLastDirection(null)
+    this.context.getGamesForSwiper(this.props.match.params.groupID)
   }
 
+  componentWillUnmount () {
+    //then when you exit the page, drop the classname that hides the scrollbars
+    document.querySelector('body').className = ''
+  }
+
+  render() {
+  // console.log(this.context.lastDirection)
+  //assign a css class to the body to prevent scrollbars from appearing when you swipe
+  document.querySelector('body').className = 'no-scroll'
+
+  const games = this.context.games
+  const group_id = this.props.match.params.groupID
+
+  // const outOfFrame = (name) => {
+  //   console.log(name + ' left the screen!')
+  // }
+  // this would go within the <TinderCard onCardLeftScreen={}>
+  // onCardLeftScreen={() => outOfFrame(game.game_name)}
+
+  // console.log(this.context.games)
   return (
-    <div>
-      <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
-      <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-      <h1>React Tinder Card</h1>
+    <div className='swiper'>
       <div className='cardContainer'>
-        {games.map((game) =>
-          <TinderCard className='swipe' key={game.name} onSwipe={(dir) => this.context.swiped(dir, game.name)} onCardLeftScreen={() => outOfFrame(game.name)}>
-            <div style={{ backgroundImage: 'url(' + game.url + ')' }} className='card'>
-              <h3>{game.name}</h3>
+        {games.length
+        ?
+          games.map((game, index) =>
+          <TinderCard className='swipe' key={index+game.game_name} preventSwipe={['up', 'down']} onSwipe={(dir) => this.context.swiped(dir, game.game_name, group_id)} >
+            <div style={{ backgroundImage: 'url(' + game.game_img_url + ')' }} className='card'>
+              <h3><a href={game.game_bga_url} target='_blank' rel='noopener noreferrer'>{game.game_name}</a></h3>
             </div>
           </TinderCard>
-        )}
+        )
+        :
+          <h3>You have no more games to swipe for this group! The creator of this group has to add more games.</h3>
+        }
       </div>
+      {/* placeholder for thumbs up/ thumbs down buttons
       <div className='buttons'>
-        <div onClick={() => this.context.swiped('left')}><FaIcons.FaThumbsDown size={50} color={"red"}/></div>
-        <div onClick={() => this.context.swiped('right')}><FaIcons.FaThumbsUp size={50} color={"green"}/></div>
-      </div>
+        <div onClick={() => this.context.swiped('left')}><FaIcons.FaThumbsDown size={50} color={'red'}/></div>
+        <div onClick={() => this.context.swiped('right')}><FaIcons.FaThumbsUp size={50} color={'green'}/></div>
+      </div> */}
+      
 
-      {this.context.lastDirection ? <h2 className='infoText'>You swiped {this.context.lastDirection}</h2> : null }
+      {this.context.lastDirection === 'right' || this.context.lastDirection === 'left' ? <h2 className='infoText'>You swiped {this.context.lastDirection}</h2> : null }
+      
     </div>
   )
   }
@@ -125,7 +146,7 @@ export default class SwipeStack extends React.Component {
 //   }
 
 //   return (
-//     <div className="swiper" style={{overflow: 'hidden'}}>
+//     <div className='swiper' style={{overflow: 'hidden'}}>
 //     {games.length
 //     ?
 //     <>
@@ -139,8 +160,8 @@ export default class SwipeStack extends React.Component {
 //         )}
 //       </div>
 //       <div className='buttons'>
-//         <div onClick={() => swipe('left')}><FaIcons.FaThumbsDown size={50} color={"red"}/></div>
-//         <div onClick={() => swipe('right')}><FaIcons.FaThumbsUp size={50} color={"green"}/></div>
+//         <div onClick={() => swipe('left')}><FaIcons.FaThumbsDown size={50} color={'red'}/></div>
+//         <div onClick={() => swipe('right')}><FaIcons.FaThumbsUp size={50} color={'green'}/></div>
 //       </div>
 //       {lastDirection ? <h2 key={lastDirection} className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText'>Swipe on a game or press a button to get started!</h2>}
 //     </>
