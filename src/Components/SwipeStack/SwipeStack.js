@@ -6,7 +6,6 @@ import TinderCard from 'react-tinder-card'
 export default class SwipeStack extends React.Component {
   static contextType = AppContext
 
-
   componentDidMount () {
     this.context.checkAuth()
     this.context.setLastDirection(null)
@@ -25,6 +24,7 @@ export default class SwipeStack extends React.Component {
 
   const games = this.context.games
   const group_id = this.props.match.params.groupID
+  // console.log(this.context.lastDirection)
 
   // const outOfFrame = (name) => {
   //   console.log(name + ' left the screen!')
@@ -34,6 +34,7 @@ export default class SwipeStack extends React.Component {
 
   // console.log(this.context.games)
   return (
+    <>
     <div className='swiper'>
       <div className='cardContainer'>
         {games.length
@@ -46,7 +47,7 @@ export default class SwipeStack extends React.Component {
           </TinderCard>
         )
         :
-          <h3>You have no more games to swipe for this group! The creator of this group has to add more games.</h3>
+          <h3>You have no more games to swipe for this group! Any group member can add lists to the group.</h3>
         }
       </div>
       {/* placeholder for thumbs up/ thumbs down buttons
@@ -59,6 +60,27 @@ export default class SwipeStack extends React.Component {
       {this.context.lastDirection === 'right' || this.context.lastDirection === 'left' ? <h2 className='infoText'>You swiped {this.context.lastDirection}</h2> : null }
       
     </div>
+    {this.context.matchedGames.length
+    ?
+    <>
+    <div className="groupSidebarHeader">
+      <h3 className="mobile-header">Matched Games in this Group:</h3>
+    </div>
+      <div className="groupSidebar">
+      <h3 className="desktop-header">Matched Games in this Group:</h3>
+        <ul>
+          {this.context.matchedGames.map((game, index) =>  {
+            return (
+              <li key={index}><a href={game.game_bga_url} target="_blank" rel="noopener noreferrer">{game.game_name}</a></li>
+            )
+          })}
+        </ul>
+    </div>
+    </>
+    :
+    null
+    }
+    </>
   )
   }
 }

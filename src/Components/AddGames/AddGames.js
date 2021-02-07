@@ -16,6 +16,7 @@ export default class AddGames extends React.Component {
         <p>Try some of these lists:</p>
         <ul>
             <li key="first example">PEPG0q0gSq - large list of over 200 games</li>
+            sPkuJdSoAg
         </ul>
 
         <form className="user-form" onSubmit={(e) => this.context.getBGAList(e)}>

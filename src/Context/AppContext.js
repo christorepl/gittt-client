@@ -30,6 +30,7 @@ const AppContext = React.createContext({
   checkAuth: () => {},
   goToSwipeGroup: () => {},
   getGamesForSwiper: () => {},
+  matchedGames: [],
   games: [],
   selectedContacts: [],
   userGroupData: [],

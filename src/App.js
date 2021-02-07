@@ -36,12 +36,13 @@ class App extends React.Component {
     email: '',
     password: '',
     lists: [],
-    games: []
+    games: [],
+    matchedGames: []
   }
   
   async componentDidMount () {
-    const { groupMenuToggle, groups, newGroupName, selectedContacts, user_id, contacts, contactID, contactName, lists, BGAListID, BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName } = this.context
-    this.setState({ groupMenuToggle, groups, newGroupName, selectedContacts, user_id, contacts, contactID, contactName, lists, BGAListID, BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName })
+    const { matchedGames, groupMenuToggle, groups, newGroupName, selectedContacts, user_id, contacts, contactID, contactName, lists, BGAListID, BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName } = this.context
+    this.setState({ matchedGames, groupMenuToggle, groups, newGroupName, selectedContacts, user_id, contacts, contactID, contactName, lists, BGAListID, BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName })
     this.checkAuth()
   }
 
@@ -130,6 +131,7 @@ class App extends React.Component {
 
   swiped = async (direction, game_name, group_id) => {
     // console.log(direction, 'removing: ' + nameToDelete)
+    console.log(this.state.lastDirection)
     // we don't do anything on up or down swipes so we just return
     if(direction === 'up' || direction === 'down') {
       return
@@ -157,9 +159,10 @@ class App extends React.Component {
       })
 
       const parseRes = await response.json()
-      //on logout, clear selected group on add games to group page
-      //on checkauth/ login, get groups from SELECT LIKE req.user.id
-      console.log(parseRes)
+
+      if(parseRes.msg) {
+        alert(parseRes.msg)
+      }
 
 
     } catch (error) {
@@ -436,9 +439,9 @@ class App extends React.Component {
     
     if (res.msg) {
       alert(res.msg)
-    } else if (res.data.games) {
-      const games = res.data.games
-      this.setState({games})
+    } else if (res.data) {
+      const { games, matchedGames } = res.data
+      this.setState({games, matchedGames})
     }
 
     } catch (error) {
@@ -449,6 +452,7 @@ class App extends React.Component {
   render() {
     const value = {
       selectedContacts: this.state.selectedContacts,
+      matchedGames: this.state.matchedGames,
       games: this.state.games,
       isAuthenticated: this.state.isAuthenticated,
       navBarToggle: this.state.navBarToggle,

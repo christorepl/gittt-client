@@ -93,6 +93,7 @@ h2 {
 }
 
 .cardContainer {
+  padding-top: 4em;
   width: 90vw;
   max-width: 260px;
   height: 300px;
@@ -117,6 +118,26 @@ h2 {
 .cardContent {
   width: 100%;
   height: 100%;
+}
+
+.groupSidebarHeader{
+  position: absolute;
+  top: 0;
+}
+
+.groupSidebar{
+  background-color: gray;
+  position: absolute;
+  padding-top: 8em;
+  height: 1em;
+  top: 50px;
+  width: 100%;
+  border: 1px solid black;
+  overflow: auto;
+}
+
+.desktop-header {
+  display: none
 }
 
 .swipe:last-of-type {
@@ -356,13 +377,11 @@ p {
   100% { transform: scale(1,1) }
 }   */
 
-@media screen and (min-width: 40em) {
+
+@media screen and (min-width: 450px) {
   .nav-text a {
     font-size: 16px
   }
-}
-
-@media screen and (min-width: 450px) {
   .dash-title{
     display: flex;
     font-size: 12px;
@@ -375,8 +394,37 @@ p {
   .dash-icon {
     font-size: 35px
   }
-}
 
-@media screen and (min-wdith: 542px) {
+  .groupSidebarHeader{
+    position: absolute;
+    top: 0;
+  }
+  
+  .groupSidebar{
+    background-color: gray;
+    position: absolute;
+    margin: 1em;
+    padding-top: 0px;
+    height: 1em;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 25%;
+    border: 1px solid black;
+    overflow: auto;
+  }
+  
+  .groupSidebar li {
+    list-style-type: circle;
+  }
+
+  .mobile-header {
+    display: none;
+  }
+
+  .desktop-header {
+    display: flex;
+    z-index: 5;
+  }
 
 }
