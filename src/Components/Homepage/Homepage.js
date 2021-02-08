@@ -29,7 +29,10 @@ class Homepage extends React.Component {
                 <input type="password" name="password" required onChange={e => this.context.setPassword(e.target.value)}/>
                 <br/>
                 <button type="submit">Login</button>
-                <p>For testing, try using the these credentials: E-mail: test@test.com - Password: test</p>
+                <p>For testing, try using the these credentials:</p> 
+                <li>E-mail: test@test.com - Password: test</li>
+                <li>E-mail: chris@chris.com - Password: chris</li>
+                <li>E-mail: tori@tori.com - Password: tori</li>
                 </form>
             </div>
             </>
@@ -42,9 +45,9 @@ class Homepage extends React.Component {
             <AiIcons.AiOutlineLogout/>
             <span className="nav-span">Logout</span>
         </Link>
-        <p>
+        {/* <p>
         -delete account page link
-        </p>
+        </p> */}
         <h3>Get to swiping!</h3>
         <GroupMenu/>
         </div>
