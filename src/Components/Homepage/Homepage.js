@@ -15,9 +15,6 @@ class Homepage extends React.Component {
             <p>Do you have so many tabletop games in your collection that it's always a hassle to choose a game? Or maybe you want your playgroup to come to a consensus on a new game to purchase? That's where Get It To The Table comes in. You and your playgroup can form a chatgroup and match on games! Once everyone swipes right on a game, the game will count as a match and everyone can see the list of matched games! You can even do this in advance if you have a game night coming up and want people to decide before they arrive!</p>
 
             <p>Import <a href="https://www.boardgameatlas.com/" target="_blank" rel="noopener noreferrer">BGA lists</a>, add some contacts, make a group, add a list to a group, and get to swiping!</p>
-
-            <Link to="/swiper/poop">Swiper</Link>
-            <Link to="/group_menu">Group menu</Link>
         </div>
         <Link to='/create-account'>Create account</Link>
         <div className="user-forms">
