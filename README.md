@@ -4,7 +4,7 @@ This readme is for early builds of Get it to the Table. This app is for tabletop
 
 ### Functionality
 
-Get it to the Table gives users the ability to swipe on, and match with, games within a chat. If all members of a chat swipe right on a game, it is added to that chat's list of matches. 
+Get it to the Table gives users the ability to swipe on, and match with, games within a group. If all members of a chat swipe right on a game, it is added to that group's list of matches. 
 
 ## Tagline
 "Tinder for board games!"
