@@ -131,7 +131,7 @@ class App extends React.Component {
 
   swiped = async (direction, game_name, group_id) => {
     // console.log(direction, 'removing: ' + nameToDelete)
-    console.log(this.state.lastDirection)
+    // console.log(this.state.lastDirection)
     // we don't do anything on up or down swipes so we just return
     if(direction === 'up' || direction === 'down') {
       return
