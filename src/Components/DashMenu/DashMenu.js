@@ -2,6 +2,7 @@ import React from 'react'
 import AppContext from '../../Context/AppContext'
 import { Link } from 'react-router-dom'
 import { IconContext } from 'react-icons'
+import * as AiIcons from 'react-icons/ai'
 import * as GrIcons from 'react-icons/gr'
 import * as RiIcons from 'react-icons/ri'
 // import * as BsIcons from 'react-icons/bs'
@@ -11,14 +12,18 @@ export default class DashMenu extends React.Component {
 
     render() {
  
-        const DashMenu = [
+        let dashMenu = []
+
+        this.context.isAuthenticated
+        ?
+        dashMenu = [
              {
                  title: 'Dashboard',
                  path: '/home',
                  icon: <RiIcons.RiDashboardLine/>
              },
              {
-                 title: 'Add Game List',
+                 title: 'Game Lists',
                  path: '/add-games',
                  icon: <GrIcons.GrAdd/>,
                  className: 'nav-text'
@@ -35,30 +40,38 @@ export default class DashMenu extends React.Component {
                  icon: <GrIcons.GrGroup/>,
                 }
         ]
+        :
+        dashMenu = [
+            {
+                title: 'Login',
+                path: '/login',
+                icon: <AiIcons.AiOutlineLogin/>
+            },
+            {
+                title: 'Create Account',
+                path: '/create-account',
+                icon: <AiIcons.AiOutlineUserAdd/>
+            }
+        ]
 
-        // ,
-        //         {
-        //             title: 'Swiper',
-        //             path: '/swiper',
-        //             icon: <BsIcons.BsArrowLeftRight/>
-        //         }
 
-                
         return (
-            <IconContext.Provider value={{color: 'black'}}>
-                <div className="dash-menu">
-                             {DashMenu.map((item, i) => { 
-                                 return (
-                                     <li key={i} className="dash-text">
-                                         <Link to={item.path}>
-                                                 <span className="dash-icon">{item.icon}</span>
-                                             <span className="dash-title">{item.title}</span>
-                                         </Link>
-                                     </li>
-                                 )
-                             })}
+            <div>
+                <IconContext.Provider value={{color: 'black'}}>
+                    <div className="dash-menu">
+                                {dashMenu.map((item, i) => { 
+                                    return (
+                                        <li key={i} className="dash-text">
+                                            <Link to={item.path}>
+                                                    <span className="dash-icon">{item.icon}</span>
+                                                <span className="dash-title">{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    )
+                                })}
+                    </div>
+                    </IconContext.Provider>
                 </div>
-                </IconContext.Provider>
          )
      }
  

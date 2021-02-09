@@ -19,6 +19,7 @@ class App extends React.Component {
 
   state = {
     groups: [],
+    howToToggle: false,
     isAuthenticated: false,
     groupMenuToggle: false,
     navBarToggle: false,
@@ -41,8 +42,8 @@ class App extends React.Component {
   }
   
   async componentDidMount () {
-    const { matchedGames, groupMenuToggle, groups, newGroupName, selectedContacts, user_id, contacts, contactID, contactName, lists, BGAListID, BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName } = this.context
-    this.setState({ matchedGames, groupMenuToggle, groups, newGroupName, selectedContacts, user_id, contacts, contactID, contactName, lists, BGAListID, BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName })
+    const { howToToggle, matchedGames, groupMenuToggle, groups, newGroupName, selectedContacts, user_id, contacts, contactID, contactName, lists, BGAListID, BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName } = this.context
+    this.setState({ howToToggle, matchedGames, groupMenuToggle, groups, newGroupName, selectedContacts, user_id, contacts, contactID, contactName, lists, BGAListID, BGAName, user_name, lastDirection, isAuthenticated, navBarToggle, games, userEmail, userPassword, userName })
     this.checkAuth()
   }
 
@@ -479,8 +480,15 @@ class App extends React.Component {
     }
   }
 
+  toggleHowTo = () => {
+    console.log('turds')
+    this.setState({howToToggle: !this.state.howToToggle})
+    console.log(this.state.howToToggle)
+  }
+
   render() {
     const value = {
+      howToToggle: this.state.howToToggle,
       selectedContacts: this.state.selectedContacts,
       matchedGames: this.state.matchedGames,
       games: this.state.games,
@@ -500,6 +508,7 @@ class App extends React.Component {
       groups: this.state.groups,
       selectedGroup: this.state.selectedGroup,
       selectedLists: this.state.selectedLists,
+      toggleHowTo: this.toggleHowTo,
       onSubmitDeleteAccount: this.onSubmitDeleteAccount,
       getGamesForSwiper: this.getGamesForSwiper,
       goToSwipeGroup: this.goToSwipeGroup,
@@ -532,7 +541,6 @@ class App extends React.Component {
     return(
       <AppContext.Provider value={value}>
       <div className="app">
-        {/* <NavBar/> */}
         <Route exact path="/">
           <Redirect to="/home"/>
         </Route>
@@ -572,23 +580,7 @@ class App extends React.Component {
           exact path="/add-games"
           component={AddGames}
         />
-        {/* {this.state.isAuthenticated
-        ?
-        <Route
-          path="/"
-          component={DashMenu}
-        />
-        :
-        null
-        } */}
-        {this.state.isAuthenticated
-        ?
-        <div>
         <DashMenu/>
-        </div>
-        :
-        null
-        }
       </div>
       </AppContext.Provider>
     )

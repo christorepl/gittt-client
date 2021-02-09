@@ -45,8 +45,15 @@ export default class Groups extends React.Component {
                     <footer>Please wait a few moments to get a response from the server! The BGA API is a bit slow!</footer>
                 </form>
                 
+                {this.context.groups.length
+                ?
+                <>
                 <h3>Start swiping!</h3>
                 <GroupMenu/>
+                </>
+                :
+                null
+                }
 
                 
             </div>

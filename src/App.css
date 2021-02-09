@@ -19,7 +19,7 @@ body {
   width: 100vw;
   min-height: 100vh;
   background-image: linear-gradient(to top, rgb(255, 166, 43), rgb(194, 255, 255),rgb(194, 255, 255), rgb(194, 255, 255));
-  
+  margin: 0 auto
 }
 
 
@@ -36,6 +36,8 @@ body {
   justify-content: center;
   align-items: center;
   margin: auto;
+  width: 80%;
+  padding-bottom: 6em;
 }
 
 .row {
@@ -282,7 +284,7 @@ li {
 }
 
 .info {
-  display: flex;
+  padding-bottom: 7em;
   width: 80%;
 }
 
@@ -358,9 +360,8 @@ footer {
   font-size: 25px
 }
 
-p {
-  text-align: left !important;
-  font-size: 12px;
+.how-to-hidden {
+  display: none
 }
 
 /* .info img {

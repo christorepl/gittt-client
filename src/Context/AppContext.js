@@ -31,6 +31,8 @@ const AppContext = React.createContext({
   goToSwipeGroup: () => {},
   getGamesForSwiper: () => {},
   onSubmitDeleteAccount: () => {},
+  toggleHowTo: () => {},
+  howToToggle: false,
   matchedGames: [],
   games: [],
   selectedContacts: [],

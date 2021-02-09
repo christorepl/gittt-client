@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import AppContext from '../../Context/AppContext'
 import gitttLogo from '../../img/gittt-logo.png'
 
@@ -22,9 +21,7 @@ export default class HomepageNonUser extends React.Component {
                 <h4>Step 4:</h4>
                 <p>Add a BGA list to a group</p>
                 <h4>Step 5:</h4>
-                <p>Get to swiping and wait for matches! Matches are shown a group's swiping page.</p>
-            <Link to='/create-account'>Create account</Link>
-            <Link to='/login'>Login</Link>
+                <p>Get to swiping and wait for matches! Matches are shown in a group's swiping page.</p>
             </div>
             </>
         )
