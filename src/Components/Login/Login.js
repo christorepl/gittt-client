@@ -13,7 +13,7 @@ export default class Login extends React.Component {
             <>
             {this.context.isAuthenticated
             ?
-            <Redirect to="/user-dash"/>
+            <Redirect to="/home"/>
             :
             <div className="user-forms">
                 <form className="user-form" onSubmit={(e) => this.context.onSubmitLogin(e)}>
@@ -26,7 +26,12 @@ export default class Login extends React.Component {
                 <input type="password" name="password" required onChange={e => this.context.setPassword(e.target.value)}/>
                 <br/>
                 <button type="submit">Login</button>
-                <p>For testing, try using the these credentials: E-mail: test@test.com - Password: test</p>
+                <p>For testing, try using the these credentials:</p>
+                <p>E-mail: test@test.com - Password: test</p>
+                <p>E-mail: jimmy@test.com - Password: test</p>
+                <p>E-mail: johnny@test.com - Password: test</p>
+                <p>E-mail: bobby@test.com - Password: test</p>
+                <p>E-mail: joey@test.com - Password: test</p>
                 </form>
             </div>
             }

@@ -10,7 +10,7 @@ export default class GroupMenu extends React.Component {
     render() {
 
         return(
-            <div className="group-menu">
+            <div className="groupMenu">
                 <Menu menuButton={
                     ({ open }) =>
                         <MenuButton>{open ? 'Close Menu' : 'Select a Group'}</MenuButton>}

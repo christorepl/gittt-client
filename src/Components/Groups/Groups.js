@@ -1,6 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 import AppContext from '../../Context/AppContext'
+import GroupMenu from '../GroupMenu/GroupMenu'
 
 export default class Groups extends React.Component {
     static contextType = AppContext
@@ -43,6 +44,10 @@ export default class Groups extends React.Component {
                     <button type="submit">Add List To Group</button>
                     <footer>Please wait a few moments to get a response from the server! The BGA API is a bit slow!</footer>
                 </form>
+                
+                <h3>Start swiping!</h3>
+                <GroupMenu/>
+
                 
             </div>
          )

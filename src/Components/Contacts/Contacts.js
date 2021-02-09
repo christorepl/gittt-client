@@ -31,6 +31,11 @@ export default class Contacts extends React.Component {
                     <button type="submit">Add Contact</button>
                     </form>
                 </div>
+                {this.context.contacts.length > 0
+                ?
+
+
+
                 <form className="contact-list" onSubmit={e => this.context.createGroup(e)}>
                     <h3>Select one or more contacts to create a group</h3>
                     <div className="select-box">
@@ -50,6 +55,9 @@ export default class Contacts extends React.Component {
                     <button type="submit">Create Group</button>
                 </form>
                 
+                :
+                null
+                }
             </div>
 
             </div>

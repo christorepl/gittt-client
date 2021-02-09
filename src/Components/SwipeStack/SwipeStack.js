@@ -24,25 +24,18 @@ export default class SwipeStack extends React.Component {
 
   const games = this.context.games
   const group_id = this.props.match.params.groupID
-  // console.log(this.context.lastDirection)
+  console.log(games)
 
-  // const outOfFrame = (name) => {
-  //   console.log(name + ' left the screen!')
-  // }
-  // this would go within the <TinderCard onCardLeftScreen={}>
-  // onCardLeftScreen={() => outOfFrame(game.game_name)}
-
-  // console.log(this.context.games)
   return (
     <>
-    <div className='swiper'>
-      <div className='cardContainer'>
-        {games.length
+    <div className="swiper">
+      <div className="cardContainer">
+        {games.length > 0
         ?
           games.map((game, index) =>
           <TinderCard className='swipe' key={index+game.game_name} preventSwipe={['up', 'down']} onSwipe={(dir) => this.context.swiped(dir, game.game_name, group_id)} >
-            <div style={{ backgroundImage: 'url(' + game.game_img_url + ')' }} className='card'>
-              <h3><a href={game.game_bga_url} target='_blank' rel='noopener noreferrer'>{game.game_name}</a></h3>
+            <div style={{ backgroundImage: 'url(' + game.game_img_url + ')' }} className="card">
+              <h3><a href={game.game_bga_url} target="_blank" rel="noopener noreferrer">{game.game_name}</a></h3>
             </div>
           </TinderCard>
         )
@@ -57,7 +50,7 @@ export default class SwipeStack extends React.Component {
       </div> */}
       
 
-      {this.context.lastDirection === 'right' || this.context.lastDirection === 'left' ? <h2 className='infoText'>You swiped {this.context.lastDirection}</h2> : null }
+      {(this.context.lastDirection === 'right' && this.context.games.length) || (this.context.lastDirection === 'left' && this.context.games.length) ? <h2 className='infoText'>You swiped {this.context.lastDirection}</h2> : null }
       
     </div>
     {this.context.matchedGames.length

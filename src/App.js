@@ -5,7 +5,6 @@ import API_BASE_URL from './config'
 import AppContext from './Context/AppContext'
 import SwipeStack from './Components/SwipeStack/SwipeStack'
 import Homepage from './Components/Homepage/Homepage'
-import HowToUse from './Components/HowToUse/HowToUse'
 import Login from './Components/Login/Login'
 import Logout from './Components/Logout/Logout'
 import AddGames from './Components/AddGames/AddGames'
@@ -13,6 +12,7 @@ import CreateAccount from './Components/CreateAccount/CreateAccount'
 import Groups from './Components/Groups/Groups'
 import Contacts from './Components/Contacts/Contacts'
 import DashMenu from './Components/DashMenu/DashMenu'
+import DeleteAccount from './Components/DeleteAccount/DeleteAccount'
 
 class App extends React.Component {
   static contextType = AppContext
@@ -129,27 +129,23 @@ class App extends React.Component {
     this.setState({lastDirection})
   }
 
-  swiped = async (direction, game_name, group_id) => {
-    // console.log(direction, 'removing: ' + nameToDelete)
-    // console.log(this.state.lastDirection)
-    // we don't do anything on up or down swipes so we just return
-    if(direction === 'up' || direction === 'down') {
+  swiped = async (lastDirection, game_name, group_id) => {
+    // don't do anything if a user swipes up or down
+    if(lastDirection === 'up' || lastDirection === 'down') {
       return
     }
-    let swipe_direction = direction[0]
-    // console.log(swipeDirection, group_id, nameToDelete)
-    // this.setLastDirection(direction)
-    // let games = this.state.games
-    // games.filter(game => {return (game.game_name !== nameToDelete)})
 
-    // this.setState({games})
+    this.setState({lastDirection})
+
+    //swipe_direction will be r or l to save space on tables
+    let swipe_direction = lastDirection[0]
 
     try {
 
       const queryURL = `${API_BASE_URL}/swiper/${group_id}` 
 
       const response = await fetch(queryURL, {
-        method: "POST",
+        method: 'PUT',
         headers: {
           'content-type': 'application/json',
           'jwt_token' : localStorage.jwt_token,
@@ -168,6 +164,14 @@ class App extends React.Component {
     } catch (error) {
       alert(error)
     }
+
+    let filterGames = this.state.games
+    
+    let games = filterGames.filter(game => game.game_name !== game_name)
+
+    console.log(games)
+
+    this.setState({games})
   }
 
   logout = () => {
@@ -449,6 +453,32 @@ class App extends React.Component {
     }
   }
 
+  onSubmitDeleteAccount = async (e) => {
+    e.preventDefault()
+    try {
+
+      const email = this.state.email
+      const body = { email }
+
+      const response = await fetch(`${API_BASE_URL}/auth/delete-account`, {
+        method: 'DELETE',
+        headers: {
+          'content-type' : 'application/json',
+          'jwt_token' : localStorage.jwt_token
+        },
+        body: JSON.stringify(body)
+      })
+
+      const res = await response.json()
+      
+      alert (res.msg)
+      this.logout()
+      
+    } catch (error) {
+      console.log('poop', error)
+    }
+  }
+
   render() {
     const value = {
       selectedContacts: this.state.selectedContacts,
@@ -470,6 +500,7 @@ class App extends React.Component {
       groups: this.state.groups,
       selectedGroup: this.state.selectedGroup,
       selectedLists: this.state.selectedLists,
+      onSubmitDeleteAccount: this.onSubmitDeleteAccount,
       getGamesForSwiper: this.getGamesForSwiper,
       goToSwipeGroup: this.goToSwipeGroup,
       checkAuth: this.checkAuth,
@@ -522,13 +553,13 @@ class App extends React.Component {
           component={Contacts}
         />
         <Route
+          exact path="/delete-account"
+          component={DeleteAccount}
+        />
+        <Route
           exact path="/swiper/:groupID"
           component={SwipeStack} 
           />
-        <Route
-          exact path="/how-to-use"
-          component={HowToUse}
-        />
         <Route
           exact path="/login"
           component={Login}
