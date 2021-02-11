@@ -1,11 +1,21 @@
-# Get it to the Table!
+# Get it to the Table
 
 ## Intent of Application
-This app allows users to explore and investigate data related to food insecurity, COVID, racial demographics, poverty and voting tendencies in the US. The app displays raw data numbers and includes visual aids in the form of pie graphs and bar charts to compare the data from different states.
+This app allows users to swipe on games imported from [Board Game Atlas](https://www.boardgameatlas.com/) lists. It's like Tinder for tabletop games!
 
 ##### [Link to Live App](https://get-it-to-the-table.vercel.app/)
 
 ##### [Server Repo](https://github.com/christorepl/get-it-to-the-table-server)
+
+![screenshot-1](https://raw.githubusercontent.com/christorepl/gittt-client/main/screenshots/swiping.gif)
+Swiping on games
+
+
+![screenshot-2](https://raw.githubusercontent.com/christorepl/gittt-client/main/screenshots/swipinglinks.gif)
+Swiping on games and checking out linked info
+
+![screenshot-2](https://raw.githubusercontent.com/christorepl/gittt-client/main/screenshots/swipingmatch.gif)
+Swiping on games and getting matches!
 
 
 ## Technologies
@@ -15,9 +25,6 @@ This app allows users to explore and investigate data related to food insecurity
 * Express
 * Postgresql
 * Heroku Deployment
-
-### API used for COVID Data:
-[coronavirus-us-api](https://rapidapi.com/Spiderpig86/api/coronavirus-us-api)
 
 ### Testing
 * Mocha
@@ -29,6 +36,9 @@ This app allows users to explore and investigate data related to food insecurity
 * Vercel Deployment
 * JSX
 * CSS
+
+### API used for BGA Lists:
+[BGA API](https://www.boardgameatlas.com/api/docs)
 
 ## Authentication
 | Method    | Endpoint           | Usage                 | Returns      |
@@ -57,7 +67,7 @@ Endpoint for authenticating users
 | ------    | --------        | -----                 | -------         |
 | POST      | /auth/register     | Register new user     | User Object     | 
 
-### `/auth/users`
+### `/auth/register`
 #### POST
 Endpoint for registering new users
 
@@ -78,7 +88,7 @@ Endpoint for registering new users
 
 ### `/auth/verify`
 #### GET
-Endpoint for authenticating users already logged in
+Endpoint for authenticating users already logged in and populating their user data - groups, contacts, lists, and so on.
 
 
 ##### Request Body
@@ -93,112 +103,130 @@ Endpoint for authenticating users already logged in
 | 200 | Respond with authentication status | 
 | 401 | Unauthorized |
 
-### `/api/state/all`
-#### GET
-Endpoint for updating COVID data and getting data for the interactive map. No user input required.
-
-##### Responses
-
-| Code | Description |
-| --- | --- |
-| 200 | Respond with JSON containing all states' data | 
-
-
-### `/api/state/search`
-#### GET
-Endpoint for user searches
-
-##### Request Body
-| Type | Fields | Description |
-| ---  | ---    | ---         |
-| JSON | fips | JSON containing US state fips codes to search |
-
-##### Responses
-
-| Code | Description |
-| --- | --- |
-| 200 | Response with JSON containing all states' data | 
-| 404 | Error message when user sends invalid fips codes
-
-### `/api/save/saved_search`
-#### GET
-Endpoint for sending a particular user's saves
-
-##### Request Body
-| Type | Fields | Description |
-| ---  | ---    | ---         |
-| JSON | user.id | JSON containing user's id |
-
-##### Responses
-
-| Code | Description |
-| --- | --- |
-| 200 | Response with JSON containing user's saved searches data |
-
-
-### `/api/save/saved_search/:save`
-#### GET
-Endpoint for sending a selected save from a particular user's saves
-
-##### Request Body
-| Type | Fields | Description |
-| ---  | ---    | ---         |
-| JSON | user.id, save | JSON containing user's id and name of the save|
-
-
-##### Responses
-
-| Code | Description |
-| --- | --- |
-| 200 | Response with JSON containing user's saved search data |
-
-### `/api/save/saved_search/`
-#### POST
-Endpoint for saving a user's search
-
-##### Request Body
-| Type | Fields | Description |
-| ---  | ---    | ---         |
-| JSON | user.id, save_name, state_names, fips | JSON containing user's id, fips codes of states in the save, name of states in the save, and name of the save|
-
-
-##### Responses
-
-| Code | Description |
-| --- | --- |
-| 200 | Response with JSON containing user's saved searches data | 
-
-
-### `/api/save/saved_search/:save_name`
-#### POST
-Endpoint for saving a user's search
-
-##### Request Body
-| Type | Fields | Description |
-| ---  | ---    | ---         |
-| JSON | user.id, save_name, new_save_name | JSON containing user's id, new name for user's save, and current name of user's save |
-
-
-##### Responses
-
-| Code | Description |
-| --- | --- |
-| 200 | Response with JSON containing user's updated save | 
-
-
-### `/api/save/saved_search/:save_name`
+### `/auth/delete-account`
 #### DELETE
-Endpoint for saving a user's search
+Endpoint for deleting a user account
 
 ##### Request Body
 | Type | Fields | Description |
 | ---  | ---    | ---         |
-| JSON | user.id, save_name | JSON containing user's id name of user's save |
+| JSON | user.id, email | JSON containing user's id and user's email |
 
 
 ##### Responses
 
 | Code | Description |
 | --- | --- |
-| 204 | Response with JSON containing success message |
-| 401 | Error telling user that the save does not exist or is not their's
+| 200 | Respond with JSON containing message that account was successfully deleted |
+| 500 | Respond with JSON containing message that there was a server error, that there may be a typo in their email |
+
+### `/bga/user-lists/search`
+#### GET
+Endpoint for finding lists on the BGA API.
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | list_id, list_name, user.id | JSON containing user id, BGA list ID and user defined list name |
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 201 | Respond with JSON containing message that list was added to account | 
+| 500 | Server error |
+| 401 | Unauthorized user |
+| 400 | Cannot find list on BGA API |
+
+### `/swiper/:group_id`
+#### GET
+Endpoint for populating swipe cards
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | group_id, user.id | JSON containing user id and pertinent group_id that user wants to swipe on |
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 200 | Response with JSON containing all games' data | 
+| 500 | Error message when user somehow tries to swipe on a group that doesn't exist |
+| 401 | Unauthorized user
+
+### `/swiper/:group_id`
+#### PUT
+Endpoint for updating tables with swiping information
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | game_name, swipe_direction | JSON containing user's id, name of game and direction they swiped |
+| Parameters | group_id | The group_id that the user is swiping on
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 400 | Response with JSON containing message that the group does not exist |
+| 200 | Response with JSON containing message that the game is a match, everyone swiped right |
+| 200 | Response with JSON contaning info that the swipe was recorded |
+| 500 | Response with JSON containing message that there was a Server error
+
+
+### `/contacts`
+#### POST
+Endpoint for adding contacts to a user's account
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | user.id, contact_name, contact_id | JSON containing user's id, contact's id, and contact's user defined name
+
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 412 | Response with JSON containing msg that user cannot add themselves to their contacts |
+| 412 | Response with JSON containing msg that user already has that contact | 200 | Response with JSON containing msg that contact was successfully added
+| 500 | Response with JSON containing msg that contact id is invalid
+
+### `/group/add_list`
+#### POST
+Endpoint for adding a BGA game list to a group
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | user.id, group_id, list_id | JSON containing user's id, group_id to add to and list_id to be added |
+
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 400 | Response with JSON containing msg that the selected group already has the selected list in it | 
+| 201 | Response with JSON containing msg that the list was added to the group |
+| 500 | Response with JSON containing msg that there was a server error
+
+
+### `/group/create`
+#### POST
+Endpoint for creating a new user group
+
+##### Request Body
+| Type | Fields | Description |
+| ---  | ---    | ---         |
+| JSON | user.id, newGroupName, contact_ids | JSON containing user's id, the new group's name, and the id's of the contacts to be added to the group |
+
+
+##### Responses
+
+| Code | Description |
+| --- | --- |
+| 203 | Response with JSON containing msg that user already owns a group with that name |
+| 203 | Response with JSON containing msg that user alreadys owns a group with those contacts |
+| 201 | Response with JSON containing msg that group was created |
+| 500 | Server error
