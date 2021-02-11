@@ -37,7 +37,6 @@ export default class Groups extends React.Component {
                             options={this.context.lists}
                             value={this.context.selectedList}
                             onChange={this.context.handleListSelection}
-                            onClick={() => alert('poops')}
                         />
                     </div>
                     <br/>

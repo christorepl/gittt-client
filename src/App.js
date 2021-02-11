@@ -177,7 +177,7 @@ class App extends React.Component {
 
   logout = () => {
     localStorage.removeItem('jwt_token')
-    this.setState({isAuthenticated: false, groups: [], games: [], newGroupName: '', selectedContacts: [], user_id: '', contacts: [], contactID: '', contactName: '', lists: [], BGAListID: '', BGAName: '', user_name: '', lastDirection: '', userEmail: '', userPassword: '', userName: ''})
+    this.setState({isAuthenticated: false, groups: [], games: [], newGroupName: '', selectedContacts: [], user_id: '', contacts: [], contactID: '', contactName: '', lists: [], BGAListID: '', BGAName: '', user_name: '', lastDirection: '', userEmail: '', userPassword: '', userName: '', selectedGroup: '', selectedList: ''})
     this.props.history.push('/home')
   }
 
