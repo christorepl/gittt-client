@@ -18,13 +18,11 @@ export default class SwipeStack extends React.Component {
   }
 
   render() {
-  // console.log(this.context.lastDirection)
   //assign a css class to the body to prevent scrollbars from appearing when you swipe
   document.querySelector('body').className = 'no-scroll'
 
   const games = this.context.games
   const group_id = this.props.match.params.groupID
-  console.log(games)
 
   return (
     <>

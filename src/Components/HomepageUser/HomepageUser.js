@@ -11,7 +11,6 @@ export default class HomepageUser extends React.Component {
     render() {
 
         const howToClass = this.context.howToToggle ? 'how-to-hidden' : 'how-to-displayed'
-        console.log(howToClass)
         return(
             <div className="user-dash">
                 <img src={gitttLogo} alt='Get it to the Table logo'/>

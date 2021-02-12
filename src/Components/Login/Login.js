@@ -6,10 +6,8 @@ export default class Login extends React.Component {
     static contextType = AppContext
 
     render() {
-        // console.log(this.context.isAuthenticated)
 
-
-        return (
+       return (
             <>
             {this.context.isAuthenticated
             ?

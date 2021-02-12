@@ -170,8 +170,6 @@ class App extends React.Component {
     
     let games = filterGames.filter(game => game.game_name !== game_name)
 
-    console.log(games)
-
     this.setState({games})
   }
 
@@ -374,9 +372,6 @@ class App extends React.Component {
       const res = await response.json()
       alert(res.msg)
 
-      // CURRENT USER GROUP -  USE THIS FILTER TO SEE MEMBERS OF A NAMED GROUP
-      // const userGroups = parseRes.filter(group => group.group_name === this.state.newGroupName)
-      // console.log(userGroups)
     } catch (error) {
       console.error(error.message)
     }
@@ -410,7 +405,6 @@ class App extends React.Component {
           })
 
       const res = await response.json()
-      // console.log(res)
       alert(res.msg)
 
     } catch (error) {
@@ -476,14 +470,12 @@ class App extends React.Component {
       this.logout()
       
     } catch (error) {
-      console.log('poop', error)
+      console.error(error.message)
     }
   }
 
   toggleHowTo = () => {
-    console.log('turds')
     this.setState({howToToggle: !this.state.howToToggle})
-    console.log(this.state.howToToggle)
   }
 
   render() {
