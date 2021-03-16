@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const AppContext = React.createContext({
   addListToGroup: () => {},
@@ -32,25 +32,29 @@ const AppContext = React.createContext({
   getGamesForSwiper: () => {},
   onSubmitDeleteAccount: () => {},
   toggleHowTo: () => {},
+  currentGame: "",
   howToToggle: false,
   matchedGames: [],
   games: [],
   selectedContacts: [],
   userGroupData: [],
   lists: [],
-  selectedList: '',
+  selectedList: "",
   groups: [],
-  selectedGroup: '',
-  user_id: '',
+  selectedGroup: "",
+  user_id: "",
   contacts: [],
-  user_name: '',
-  BGAName: '',
-  lastDirection: '',
-  userName: '',
-  userEmail: '',
-  userPassword: '',
+  user_name: "",
+  BGAName: "",
+  lastDirection: "",
+  userName: "",
+  userEmail: "",
+  userPassword: "",
   isAuthenticated: false,
-  navBarToggle: false
-})
+  type: null,
+  message: null,
+  right: -40,
+  navBarToggle: false,
+});
 
-export default AppContext
+export default AppContext;

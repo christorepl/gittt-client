@@ -18,19 +18,24 @@ body {
   justify-content: center;
   width: 100vw;
   min-height: 100vh;
-  background-image: linear-gradient(to top, rgb(255, 166, 43), rgb(194, 255, 255),rgb(194, 255, 255), rgb(194, 255, 255));
-  margin: 0 auto
+  background-image: linear-gradient(
+    to top,
+    rgb(255, 166, 43),
+    rgb(194, 255, 255),
+    rgb(194, 255, 255),
+    rgb(194, 255, 255)
+  );
+  margin: 0 auto;
 }
 
-
-#root>div {
+#root > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.app>div {
+.app > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,7 +49,7 @@ body {
   flex-direction: row !important;
 }
 
-.row>* {
+.row > * {
   margin: 5px;
 }
 
@@ -57,30 +62,13 @@ body {
 h2 {
   color: #fff;
   /*the text-shadow property below provides a border around the card name text*/
-  text-shadow: 1px 1px 0 #000,
-  -1px 1px 0 #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000,
-  0px 1px 0 #000,
-  0px -1px 0 #000,
-  -1px 0px 0 #000,
-  1px 0px 0 #000,
-  2px 2px 0 #000,
-  -2px 2px 0 #000,
-  2px -2px 0 #000,
-  -2px -2px 0 #000,
-  0px 2px 0 #000,
-  0px -2px 0 #000,
-  -2px 0px 0 #000,
-  2px 0px 0 #000,
-  1px 2px 0 #000,
-  -1px 2px 0 #000,
-  1px -2px 0 #000,
-  -1px -2px 0 #000,
-  2px 1px 0 #000,
-  -2px 1px 0 #000,
-  2px -1px 0 #000,
-  -2px -1px 0 #000;    
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
+    -1px -1px 0 #000, 0px 1px 0 #000, 0px -1px 0 #000, -1px 0px 0 #000,
+    1px 0px 0 #000, 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000,
+    -2px -2px 0 #000, 0px 2px 0 #000, 0px -2px 0 #000, -2px 0px 0 #000,
+    2px 0px 0 #000, 1px 2px 0 #000, -1px 2px 0 #000, 1px -2px 0 #000,
+    -1px -2px 0 #000, 2px 1px 0 #000, -2px 1px 0 #000, 2px -1px 0 #000,
+    -2px -1px 0 #000;
 }
 
 .swipe {
@@ -122,12 +110,12 @@ h2 {
   height: 100%;
 }
 
-.groupSidebarHeader{
+.groupSidebarHeader {
   position: absolute;
   top: 0;
 }
 
-.groupSidebar{
+.groupSidebar {
   background-color: gray;
   position: absolute;
   padding-top: 8em;
@@ -136,14 +124,14 @@ h2 {
   width: 100%;
   border: 1px solid black;
   overflow: auto;
+  display: none;
 }
 
 .desktop-header {
-  display: none
+  display: none;
 }
 
 .swipe:last-of-type {
-
 }
 
 .swipe-menu {
@@ -151,7 +139,7 @@ h2 {
   flex-direction: column;
 }
 
-.groupMenu li{
+.groupMenu li {
   margin-left: 0;
 }
 
@@ -161,30 +149,13 @@ h2 {
   margin: 10px;
   height: 60px;
   /*the text-shadow property below provides a border around the card name text*/
-  text-shadow: 1px 1px 0 #000,
-  -1px 1px 0 #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000,
-  0px 1px 0 #000,
-  0px -1px 0 #000,
-  -1px 0px 0 #000,
-  1px 0px 0 #000,
-  2px 2px 0 #000,
-  -2px 2px 0 #000,
-  2px -2px 0 #000,
-  -2px -2px 0 #000,
-  0px 2px 0 #000,
-  0px -2px 0 #000,
-  -2px 0px 0 #000,
-  2px 0px 0 #000,
-  1px 2px 0 #000,
-  -1px 2px 0 #000,
-  1px -2px 0 #000,
-  -1px -2px 0 #000,
-  2px 1px 0 #000,
-  -2px 1px 0 #000,
-  2px -1px 0 #000,
-  -2px -1px 0 #000;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
+    -1px -1px 0 #000, 0px 1px 0 #000, 0px -1px 0 #000, -1px 0px 0 #000,
+    1px 0px 0 #000, 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000,
+    -2px -2px 0 #000, 0px 2px 0 #000, 0px -2px 0 #000, -2px 0px 0 #000,
+    2px 0px 0 #000, 1px 2px 0 #000, -1px 2px 0 #000, 1px -2px 0 #000,
+    -1px -2px 0 #000, 2px 1px 0 #000, -2px 1px 0 #000, 2px -1px 0 #000,
+    -2px -1px 0 #000;
 }
 
 .card h3 a {
@@ -200,7 +171,7 @@ h2 {
 }
 
 .card h3 a:hover {
-  background-color: rgba(107, 107, 107, 0.658)
+  background-color: rgba(107, 107, 107, 0.658);
 }
 
 .card h1 {
@@ -210,33 +181,15 @@ h2 {
   display: flex;
   justify-content: center;
   /*the text-shadow property below provides a border around the card name text*/
-  text-shadow: 1px 1px 0 #000,
-  -1px 1px 0 #000,
-  1px -1px 0 #000,
-  -1px -1px 0 #000,
-  0px 1px 0 #000,
-  0px -1px 0 #000,
-  -1px 0px 0 #000,
-  1px 0px 0 #000,
-  2px 2px 0 #000,
-  -2px 2px 0 #000,
-  2px -2px 0 #000,
-  -2px -2px 0 #000,
-  0px 2px 0 #000,
-  0px -2px 0 #000,
-  -2px 0px 0 #000,
-  2px 0px 0 #000,
-  1px 2px 0 #000,
-  -1px 2px 0 #000,
-  1px -2px 0 #000,
-  -1px -2px 0 #000,
-  2px 1px 0 #000,
-  -2px 1px 0 #000,
-  2px -1px 0 #000,
-  -2px -1px 0 #000;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
+    -1px -1px 0 #000, 0px 1px 0 #000, 0px -1px 0 #000, -1px 0px 0 #000,
+    1px 0px 0 #000, 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000,
+    -2px -2px 0 #000, 0px 2px 0 #000, 0px -2px 0 #000, -2px 0px 0 #000,
+    2px 0px 0 #000, 1px 2px 0 #000, -1px 2px 0 #000, 1px -2px 0 #000,
+    -1px -2px 0 #000, 2px 1px 0 #000, -2px 1px 0 #000, 2px -1px 0 #000,
+    -2px -1px 0 #000;
   color: rgb(255, 255, 255);
 }
-
 
 .infoText {
   width: 100%;
@@ -280,7 +233,7 @@ li {
   list-style: none;
   list-style-position: inside;
   text-align: center;
-  margin-left: -45px
+  margin-left: -45px;
 }
 
 .info {
@@ -288,10 +241,9 @@ li {
   width: 80%;
 }
 
-
 .select-box {
   width: 80%;
-  margin: auto
+  margin: auto;
 }
 
 footer {
@@ -322,18 +274,18 @@ footer {
 .dash-icons {
   display: flex;
   flex-flow: row nowrap;
-  flex: 2
+  flex: 2;
 }
 
 .dash-text {
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   margin: 0 auto;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
   list-style: none;
-  height: 100px
+  height: 100px;
 }
 
 .dash-title {
@@ -357,51 +309,127 @@ footer {
 }
 
 .dash-icon {
-  font-size: 25px
+  font-size: 25px;
 }
 
 .how-to-hidden {
-  display: none
+  display: none;
 }
 
-/* .info img {
-  width: 100%;
-} */
+.notification-container {
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: 0.5s ease;
+  position: absolute;
+  z-index: 10000;
+  bottom: 18px;
+  animation: notification-in-right 0.7s;
+}
 
-/* @keyframes popup {
-  0%   { transform: scale(1,1) }
-  10%  { transform: scale(1.1,1.1) }
-  30%  { transform: scale(.9,.9) }
-  50%  { transform: scale(1,1) }
-  57%  { transform: scale(1,1) }
-  64%  { transform: scale(1,1) }
-  100% { transform: scale(1,1) }
-}   */
+.notification {
+  background: rgb(255, 255, 255);
+  transition: 0.3s ease;
+  position: relative;
+  pointer-events: auto;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: 20px;
+  margin-bottom: 15px;
+  width: 300px;
+  max-height: 100px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgb(153, 153, 153);
+  color: #000;
+}
 
+.notification:hover {
+  box-shadow: 0 0 12px rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.notification-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: white;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 6px;
+  width: 300px;
+  height: 18px;
+}
+
+.notification-message {
+  margin: 0;
+  color: white;
+  text-align: left;
+  height: 18px;
+  margin-left: -1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notification-icon {
+  float: left;
+  margin-right: 15px;
+  font-size: 36px;
+  color: white;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: rgb(92, 184, 92);
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: #ffd700;
+}
+
+.box {
+  width: 365px;
+  color: rgb(255, 255, 255);
+  padding: 20px 15px 10px 10px;
+}
+
+@keyframes notification-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    translate: translateX(0);
+  }
+}
 
 @media screen and (min-width: 450px) {
   .nav-text a {
-    font-size: 16px
+    font-size: 16px;
   }
-  .dash-title{
+  .dash-title {
     display: flex;
     font-size: 12px;
   }
 
   .dash-text a {
-    font-size: 13px
+    font-size: 13px;
   }
 
   .dash-icon {
-    font-size: 35px
+    font-size: 35px;
   }
 
-  .groupSidebarHeader{
+  .groupSidebarHeader {
     position: absolute;
     top: 0;
   }
-  
-  .groupSidebar{
+
+  .groupSidebar {
     background-color: gray;
     position: absolute;
     margin: 1em;
@@ -410,11 +438,11 @@ footer {
     top: 0;
     left: 0px;
     height: 100%;
-    width: 25%;
     border: 1px solid black;
     overflow: auto;
+    display: none;
   }
-  
+
   .groupSidebar li {
     list-style-type: circle;
   }
@@ -427,5 +455,4 @@ footer {
     display: flex;
     z-index: 5;
   }
-
 }
