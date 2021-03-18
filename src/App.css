@@ -170,10 +170,6 @@ h2 {
   border-radius: 20px;
 }
 
-.card h3 a:hover {
-  background-color: rgba(107, 107, 107, 0.658);
-}
-
 .card h1 {
   position: absolute;
   bottom: 25%;
@@ -260,6 +256,7 @@ footer {
 
 .dash-menu {
   background-color: rgb(237, 231, 227);
+  z-index: 10000000;
   margin-top: 5em;
   position: fixed;
   display: flex !important;
@@ -321,7 +318,7 @@ footer {
   box-sizing: border-box;
   transition: 0.5s ease;
   position: absolute;
-  z-index: 10000;
+  z-index: 1000000000000;
   bottom: 18px;
   animation: notification-in-right 0.7s;
 }
@@ -405,6 +402,126 @@ footer {
   to {
     translate: translateX(0);
   }
+}
+
+.how-to {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 90vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  height: 90vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  overflow: hidden;
+}
+
+.slide {
+  min-width: 100%;
+  height: 90vh;
+  transition: 0.5s;
+  overflow: hidden;
+  display: flex;
+}
+
+.matchedGamesSlide {
+  min-width: 100%;
+  transition: 0.5s;
+}
+
+.imgSlide {
+  height: 97%;
+  width: 100%;
+}
+
+.slideHeader {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  left: 0%;
+  color: rgb(255, 255, 255);
+  font-size: 40px;
+  min-width: 100vw;
+  background-color: rgba(0, 0, 0, 0.781);
+  border-radius: 20px;
+}
+
+.slideText {
+  position: absolute;
+  text-align: center;
+  top: 20%;
+  font-weight: bolder;
+  left: 0%;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  min-width: 100vw;
+  background-color: rgba(0, 0, 0, 0.781);
+  border-radius: 20px;
+}
+
+.gameLink:hover {
+  background-color: rgba(107, 107, 107, 0.658);
+}
+
+.carouselArrows {
+  position: absolute;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  border: none;
+  background-color: transparent;
+  top: -1%;
+  transform: translateX(-50%);
+  width: 10%;
+  height: 89%;
+}
+
+.carouselArrows:active {
+  color: white;
+}
+
+.carouselArrows:visited {
+  border: none;
+}
+
+#goLeft:hover {
+  box-shadow: 0px 4px 4px 4px rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.397);
+}
+
+#goRight:hover {
+  box-shadow: 4px 4px 4px 8px rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.397);
+}
+
+#goLeft {
+  left: 4%;
+}
+
+#goRight {
+  right: -6%;
+}
+
+.matchedGames {
+  max-width: 250px;
+  max-height: 350px;
+  margin: auto;
+}
+
+.matchedGamesHeader {
+  font-size: 20px;
+  position: absolute;
+  top: -80px;
 }
 
 @media screen and (min-width: 450px) {

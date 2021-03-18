@@ -15,6 +15,8 @@ import Contacts from "./Components/Contacts/Contacts";
 import DashMenu from "./Components/DashMenu/DashMenu";
 import DeleteAccount from "./Components/DeleteAccount/DeleteAccount";
 import Notification from "./Components/Notification/Notification";
+import HowTo from "./Components/HowTo/HowTo";
+import MatchedGames from "./Components/MatchedGames/MatchedGames";
 
 const emitter = new ee();
 
@@ -30,7 +32,6 @@ class App extends React.Component {
       right: -40,
       currentGame: "",
       groups: [],
-      howToToggle: false,
       isAuthenticated: false,
       groupMenuToggle: false,
       navBarToggle: false,
@@ -64,7 +65,6 @@ class App extends React.Component {
   };
 
   onRenderNotification = (type, message) => {
-    console.log(type, message);
     if (this.timeout) {
       clearTimeout(this.timeout);
       this.setState(
@@ -109,7 +109,6 @@ class App extends React.Component {
       message,
       right,
       currentGame,
-      howToToggle,
       matchedGames,
       groupMenuToggle,
       groups,
@@ -136,7 +135,6 @@ class App extends React.Component {
       message,
       right,
       currentGame,
-      howToToggle,
       matchedGames,
       groupMenuToggle,
       groups,
@@ -616,17 +614,12 @@ class App extends React.Component {
     }
   };
 
-  toggleHowTo = () => {
-    this.setState({ howToToggle: !this.state.howToToggle });
-  };
-
   render() {
     const value = {
       type: this.state.type,
       message: this.state.message,
       right: this.state.right,
       currentGame: this.state.currentGame,
-      howToToggle: this.state.howToToggle,
       selectedContacts: this.state.selectedContacts,
       matchedGames: this.state.matchedGames,
       games: this.state.games,
@@ -646,7 +639,6 @@ class App extends React.Component {
       groups: this.state.groups,
       selectedGroup: this.state.selectedGroup,
       selectedLists: this.state.selectedLists,
-      toggleHowTo: this.toggleHowTo,
       onSubmitDeleteAccount: this.onSubmitDeleteAccount,
       getGamesForSwiper: this.getGamesForSwiper,
       goToSwipeGroup: this.goToSwipeGroup,
@@ -693,6 +685,8 @@ class App extends React.Component {
           <Route exact path="/add-games" component={AddGames} />
           <DashMenu />
         </div>
+        <Route exact path="/how-to" component={HowTo} />
+        <Route exact path="/:groupID/matched-games" component={MatchedGames} />
         <Notification />
       </AppContext.Provider>
     );

@@ -2,6 +2,7 @@ import React from "react";
 import AppContext from "../../Context/AppContext";
 // import * as FaIcons from 'react-icons/fa'
 import TinderCard from "react-tinder-card";
+import { Link } from "react-router-dom";
 
 export default class SwipeStack extends React.Component {
   static contextType = AppContext;
@@ -13,7 +14,7 @@ export default class SwipeStack extends React.Component {
   }
 
   componentWillUnmount() {
-    //then when you exit the page, drop the classname that hides the scrollbars
+    //when you exit the page, drop the classname that hides the scrollbars
     document.querySelector("body").className = "";
   }
 
@@ -49,6 +50,7 @@ export default class SwipeStack extends React.Component {
                         href={game.game_bga_url}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="gameLink"
                       >
                         {game.game_name}
                       </a>
@@ -97,6 +99,13 @@ export default class SwipeStack extends React.Component {
     :
     null
     } */}
+        {this.context.matchedGames.length ? (
+          <div className="matchedLink">
+            <Link to={`/${group_id}/matched-games`}>
+              Browse matched games for this group
+            </Link>
+          </div>
+        ) : null}
       </>
     );
   }

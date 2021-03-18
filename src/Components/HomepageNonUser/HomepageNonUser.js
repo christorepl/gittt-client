@@ -1,6 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import AppContext from "../../Context/AppContext";
-import HowTo from "../HowTo/HowTo";
 import gitttLogo from "../../img/gittt-logo.png";
 
 export default class HomepageNonUser extends React.Component {
@@ -19,7 +19,10 @@ export default class HomepageNonUser extends React.Component {
             games! Once everyone swipes right on a game, the game will count as
             a match and everyone can see the list of matched games!
           </p>
-          <HowTo />
+          <p>
+            Check out this <Link to="/how-to">how-to</Link> to learn how to use
+            this app.
+          </p>
         </div>
       </>
     );
