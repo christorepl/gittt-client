@@ -8,7 +8,7 @@ This app allows users to swipe on games imported from [Board Game Atlas](https:/
 
 ##### [Server Repo](https://github.com/christorepl/get-it-to-the-table-server)
 
-![screenshot-1](https://raw.githubusercontent.com/christorepl/gittt-client/main/screenshots/swipinglinks.gif)
+![screenshot-1](https://raw.githubusercontent.com/christorepl/gittt-client/main/src/img/swiping.gif)
 Swiping on games and checking out linked info
 
 ## Technologies
