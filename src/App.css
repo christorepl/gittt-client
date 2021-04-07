@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow: hidden;
+  width: 100px;
 }
 
 .no-scroll {
@@ -17,7 +18,7 @@ body {
   display: flex;
   justify-content: center;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   background-image: linear-gradient(
     to top,
     rgb(255, 166, 43),
@@ -33,6 +34,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.app {
+  overflow: hidden;
 }
 
 .app > div {
@@ -317,10 +322,11 @@ footer {
   font-size: 14px;
   box-sizing: border-box;
   transition: 0.5s ease;
-  position: absolute;
+  position: fixed;
   z-index: 1000000000000;
   bottom: 18px;
   animation: notification-in-right 0.7s;
+  width: 280px;
 }
 
 .notification {
@@ -332,7 +338,6 @@ footer {
   margin: 0 0 6px;
   padding: 20px;
   margin-bottom: 15px;
-  width: 300px;
   max-height: 100px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgb(153, 153, 153);
@@ -539,6 +544,10 @@ footer {
 
   .dash-icon {
     font-size: 35px;
+  }
+
+  .notification-container {
+    width: 380px;
   }
 
   .groupSidebarHeader {
