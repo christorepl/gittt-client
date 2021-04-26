@@ -32,7 +32,7 @@ export default class HowTo extends React.Component {
       }
       header={"Step 3"}
       text={
-        "On the game lists tab, add BGA lists to your account. BGA list ID's can be found in the URL of the list between the username and list name."
+        "On the game collections tab, add Board Game Geek user collections to your account."
       }
     />,
     <CarouselSlide
@@ -40,7 +40,7 @@ export default class HowTo extends React.Component {
         "https://www.mrmoneymustache.com/wp-content/uploads/2012/04/IMG_2070.jpg"
       }
       header={"Step 4"}
-      text={"On the groups tab, add lists to a group."}
+      text={"On the groups tab, add collections to a group."}
     />,
     <CarouselSlide
       src={"http://img.game.co.uk/ml2/7/7/4/3/774321_gen_a.png"}

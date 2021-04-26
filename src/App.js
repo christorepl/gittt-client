@@ -37,8 +37,8 @@ class App extends React.Component {
       navBarToggle: false,
       lastDirection: "",
       newGroupName: "",
-      BGAName: "",
-      BGAListID: "",
+      BGGName: "",
+      bgg_username: "",
       contactID: "",
       contactName: "",
       contacts: [],
@@ -48,7 +48,7 @@ class App extends React.Component {
       name: "",
       email: "",
       password: "",
-      lists: [],
+      collections: [],
       games: [],
       matchedGames: [],
     };
@@ -98,7 +98,7 @@ class App extends React.Component {
             type: null,
             message: null,
           });
-        }, 3000);
+        }, 2500);
       }
     );
   };
@@ -118,9 +118,9 @@ class App extends React.Component {
       contacts,
       contactID,
       contactName,
-      lists,
-      BGAListID,
-      BGAName,
+      collections,
+      bgg_username,
+      BGGName,
       user_name,
       lastDirection,
       isAuthenticated,
@@ -144,9 +144,9 @@ class App extends React.Component {
       contacts,
       contactID,
       contactName,
-      lists,
-      BGAListID,
-      BGAName,
+      collections,
+      bgg_username,
+      BGGName,
       user_name,
       lastDirection,
       isAuthenticated,
@@ -166,7 +166,7 @@ class App extends React.Component {
         headers: { jwt_token: localStorage.jwt_token },
       });
       const parseRes = await response.json();
-      const { user_name, user_id, groups, contacts, lists } = parseRes;
+      const { user_name, user_id, groups, contacts, collections } = parseRes;
 
       if (login === "login") {
         return this.loginUser(
@@ -175,7 +175,7 @@ class App extends React.Component {
           user_id,
           groups,
           contacts,
-          lists
+          collections
         );
       } else if (parseRes.status === true) {
         return this.loginUser(
@@ -184,7 +184,7 @@ class App extends React.Component {
           user_id,
           groups,
           contacts,
-          lists
+          collections
         );
       } else {
         this.props.history.push("/");
@@ -214,7 +214,6 @@ class App extends React.Component {
 
       const parseRes = await response.json();
       const { jwt_token, type, msg } = parseRes;
-
       if (parseRes.jwt_token) {
         localStorage.setItem("jwt_token", jwt_token);
         this.notify(type, msg);
@@ -226,6 +225,39 @@ class App extends React.Component {
     } catch (error) {
       console.error(error);
       this.notify("DANGER", error.message);
+    }
+  };
+
+  loginUser = async (
+    attempt,
+    user_name,
+    user_id,
+    groups,
+    contacts,
+    collections
+  ) => {
+    if (attempt === "login") {
+      this.setState({
+        isAuthenticated: true,
+        user_name,
+        user_id,
+        groups,
+        contacts,
+        collections,
+      });
+    } else if (attempt === "create") {
+      this.setState({ isAuthenticated: true, user_name, user_id });
+    } else if (attempt === "checkAuth") {
+      this.setState({
+        isAuthenticated: true,
+        user_name,
+        user_id,
+        groups,
+        contacts,
+        collections,
+      });
+    } else {
+      this.setState({ isAuthenticated: false });
     }
   };
 
@@ -253,7 +285,7 @@ class App extends React.Component {
 
     this.setState({ lastDirection });
 
-    //swipe_direction will be r or l to save space on tables
+    //swipe_direction will be r or l for shorthand
     let swipe_direction = lastDirection[0];
 
     try {
@@ -297,16 +329,16 @@ class App extends React.Component {
       contacts: [],
       contactID: "",
       contactName: "",
-      lists: [],
-      BGAListID: "",
-      BGAName: "",
+      collections: [],
+      bgg_username: "",
+      BGGName: "",
       user_name: "",
       lastDirection: "",
       userEmail: "",
       userPassword: "",
       userName: "",
       selectedGroup: "",
-      selectedList: "",
+      selectedCollection: "",
     });
     this.props.history.push("/home");
   };
@@ -340,99 +372,49 @@ class App extends React.Component {
     }
   };
 
-  loginUser = async (attempt, user_name, user_id, groups, contacts, lists) => {
-    if (attempt === "login") {
-      this.setState({
-        isAuthenticated: true,
-        user_name,
-        user_id,
-        groups,
-        contacts,
-        lists,
-      });
-    } else if (attempt === "create") {
-      this.setState({ isAuthenticated: true, user_name, user_id });
-    } else if (attempt === "checkAuth") {
-      this.setState({
-        isAuthenticated: true,
-        user_name,
-        user_id,
-        groups,
-        contacts,
-        lists,
-      });
-    } else {
-      this.setState({ isAuthenticated: false });
-    }
+  setBGGName = (BGGName) => {
+    this.setState({ BGGName });
   };
 
-  setBGAName = (BGAName) => {
-    this.setState({ BGAName });
+  setBGGUserCollections = (collections) => {
+    this.setState({ collections });
   };
 
-  getBGAUserLists = async (e) => {
+  setBGGUsername = (bgg_username) => {
+    this.setState({ bgg_username });
+  };
+
+  setCollectionName = (collection_name) => {
+    this.setState({ collection_name });
+  };
+
+  getBGGCollection = async (e) => {
     e.preventDefault();
     try {
-      const username = this.state.BGAName;
-      const queryURL = `${API_BASE_URL}/bga/user-lists/search?username=${username}`;
+      const { bgg_username, collection_name } = this.state;
+      const queryURL = `${API_BASE_URL}/bgg/add-collection/`;
 
       const response = await fetch(queryURL, {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-        },
-        params: {
-          username,
-        },
-      });
-
-      const parseRes = await response.json();
-      this.setBGAUserLists(parseRes.lists);
-    } catch (error) {
-      this.notify("DANGER", error);
-    }
-  };
-
-  setBGAUserLists = (lists) => {
-    // const listNames = lists.lists.map(list => list.name)
-    this.setState({ lists });
-  };
-
-  setBGAListID = (BGAListID) => {
-    this.setState({ BGAListID });
-  };
-
-  setBGAListName = (BGAListName) => {
-    this.setState({ BGAListName });
-  };
-
-  getBGAList = async (e) => {
-    e.preventDefault();
-    try {
-      const list_id = this.state.BGAListID;
-      const list_name = this.state.BGAListName;
-      const queryURL = `${API_BASE_URL}/bga/user-lists/search?list_id=${list_id}`;
-
-      const response = await fetch(queryURL, {
-        method: "GET",
+        method: "POST",
         headers: {
           "content-type": "application/json",
           jwt_token: localStorage.jwt_token,
-          list_name,
+          collection_name,
+          bgg_username,
         },
       });
 
       const parseRes = await response.json();
-      const { lists, type, msg } = parseRes;
-      this.setBGAGameList(lists);
+      const { collections, type, msg } = parseRes;
+      this.setBGGCollection(collections);
       this.notify(type, msg);
     } catch (error) {
       this.notify("DANGER", error);
     }
   };
 
-  setBGAGameList = (BGAGameList) => {
-    this.setState({});
+  setBGGCollection = (collections) => {
+    this.setState({ collections });
   };
 
   setContactID = (contactID) => {
@@ -523,18 +505,20 @@ class App extends React.Component {
     this.setState({ selectedGroup });
   };
 
-  addListToGroup = async (e) => {
+  addCollectionToGroup = async (e) => {
     e.preventDefault();
     if (!this.state.selectedGroup.value) {
       this.notify("WARNING", "You must select a group!");
       return;
-    } else if (!this.state.selectedList.value) {
-      this.notify("WARNING", "You must select a list!");
+    } else if (!this.state.selectedCollection.value) {
+      this.notify("WARNING", "You must select a collection!");
     } else {
-      let newGroupListData = { group_id: [], list_id: [] };
-      newGroupListData["group_id"].push(this.state.selectedGroup.value);
-      newGroupListData["list_id"].push(this.state.selectedList.value);
-      const groupURL = `${API_BASE_URL}/group/add_list`;
+      let newGroupCollectionData = { group_id: [], bgg_username: [] };
+      newGroupCollectionData["group_id"].push(this.state.selectedGroup.value);
+      newGroupCollectionData["bgg_username"].push(
+        this.state.selectedCollection.value
+      );
+      const groupURL = `${API_BASE_URL}/group/add_collection`;
       try {
         const response = await fetch(groupURL, {
           method: "POST",
@@ -542,7 +526,7 @@ class App extends React.Component {
             "content-type": "application/json",
             jwt_token: localStorage.jwt_token,
           },
-          body: JSON.stringify(newGroupListData),
+          body: JSON.stringify(newGroupCollectionData),
         });
 
         const parseRes = await response.json();
@@ -554,8 +538,8 @@ class App extends React.Component {
     }
   };
 
-  handleListSelection = (selectedList) => {
-    this.setState({ selectedList });
+  handleCollectionSelection = (selectedCollection) => {
+    this.setState({ selectedCollection });
   };
 
   goToSwipeGroup = (group) => {
@@ -629,22 +613,22 @@ class App extends React.Component {
       userPassword: this.state.userPassword,
       userName: this.state.userName,
       lastDirection: this.state.lastDirection,
-      BGAName: this.state.BGAName,
+      BGGName: this.state.BGGName,
       user_name: this.state.user_name,
-      lists: this.state.lists,
-      BGAListID: this.state.BGAListID,
+      collections: this.state.collections,
+      bgg_username: this.state.bgg_username,
       contacts: this.state.contacts,
       user_id: this.state.user_id,
       newGroupName: this.state.newGroupName,
       groups: this.state.groups,
       selectedGroup: this.state.selectedGroup,
-      selectedLists: this.state.selectedLists,
+      selectedCollections: this.state.selectedCollections,
       onSubmitDeleteAccount: this.onSubmitDeleteAccount,
       getGamesForSwiper: this.getGamesForSwiper,
       goToSwipeGroup: this.goToSwipeGroup,
       checkAuth: this.checkAuth,
-      handleListSelection: this.handleListSelection,
-      addListToGroup: this.addListToGroup,
+      handleCollectionSelection: this.handleCollectionSelection,
+      addCollectionToGroup: this.addCollectionToGroup,
       handleGroupSelection: this.handleGroupSelection,
       setNewGroupName: this.setNewGroupName,
       createGroup: this.createGroup,
@@ -652,12 +636,11 @@ class App extends React.Component {
       onSubmitNewContact: this.onSubmitNewContact,
       setContactName: this.setContactName,
       setContactID: this.setContactID,
-      setBGAListName: this.setBGAListName,
-      setBGAListID: this.setBGAListID,
-      getBGAList: this.getBGAList,
-      getBGAUserLists: this.getBGAUserLists,
+      setCollectionName: this.setCollectionName,
+      setBGGUsername: this.setBGGUsername,
+      getBGGCollection: this.getBGGCollection,
       createAccount: this.createAccount,
-      setBGAName: this.setBGAName,
+      setBGGName: this.setBGGName,
       setLastDirection: this.setLastDirection,
       logout: this.logout,
       setName: this.setName,

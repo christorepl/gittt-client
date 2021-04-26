@@ -2,7 +2,7 @@
 
 ## Intent of Application
 
-This app allows users to swipe on games imported from [Board Game Atlas](https://www.boardgameatlas.com/) lists. It's like Tinder for tabletop games!
+This app allows users to swipe on games imported from [Board Game Geek](https://www.boardgamegeek.com/) collections. It's like Tinder for tabletop games!
 
 ##### [Link to Live App](https://get-it-to-the-table.vercel.app/)
 
@@ -18,6 +18,8 @@ Swiping on games and checking out linked info
 
 - Node.js
 - Express
+- jwtAuth
+- axios
 - Postgresql
 - Heroku Deployment
 
@@ -34,9 +36,9 @@ Swiping on games and checking out linked info
 - JSX
 - CSS
 
-### API used for BGA Lists:
+### API used for BGG Collections:
 
-[BGA API](https://www.boardgameatlas.com/api/docs)
+[BGG XML API](https://boardgamegeek.com/wiki/page/BGG_XML_API)
 
 ## Authentication
 
@@ -95,7 +97,7 @@ Endpoint for registering new users
 
 #### GET
 
-Endpoint for authenticating users already logged in and populating their user data - groups, contacts, lists, and so on.
+Endpoint for authenticating users already logged in and populating their user data - groups, contacts, collections, and so on.
 
 ##### Request Body
 
@@ -129,26 +131,25 @@ Endpoint for deleting a user account
 | 200  | Respond with JSON containing message that account was successfully deleted                                  |
 | 500  | Respond with JSON containing message that there was a server error, that there may be a typo in their email |
 
-### `/bga/user-lists/search`
+### `/bgg/add-collection/`
 
-#### GET
+#### POST
 
-Endpoint for finding lists on the BGA API.
+Endpoint for adding BGG collections to user account.
 
 ##### Request Body
 
-| Type | Fields                      | Description                                                     |
-| ---- | --------------------------- | --------------------------------------------------------------- |
-| JSON | list_id, list_name, user.id | JSON containing user id, BGA list ID and user defined list name |
+| Type | Fields                                 | Description                                                            |
+| ---- | -------------------------------------- | ---------------------------------------------------------------------- |
+| JSON | collection_name, bgg_username, user.id | JSON containing user id, BGG username and user defined collection name |
 
 ##### Responses
 
-| Code | Description                                                         |
-| ---- | ------------------------------------------------------------------- |
-| 201  | Respond with JSON containing message that list was added to account |
-| 500  | Server error                                                        |
-| 401  | Unauthorized user                                                   |
-| 400  | Cannot find list on BGA API                                         |
+| Code | Description                                                               |
+| ---- | ------------------------------------------------------------------------- |
+| 201  | Respond with JSON containing message that collection was added to account |
+| 500  | Server error                                                              |
+| 401  | Unauthorized user                                                         |
 
 ### `/swiper/:group_id`
 
@@ -212,25 +213,25 @@ Endpoint for adding contacts to a user's account
 | 412  | Response with JSON containing msg that user already has that contact                | 200 | Response with JSON containing msg that contact was successfully added |
 | 500  | Response with JSON containing msg that contact id is invalid                        |
 
-### `/group/add_list`
+### `/group/add_collection`
 
 #### POST
 
-Endpoint for adding a BGA game list to a group
+Endpoint for adding a BGG collection to a group
 
 ##### Request Body
 
-| Type | Fields                     | Description                                                           |
-| ---- | -------------------------- | --------------------------------------------------------------------- |
-| JSON | user.id, group_id, list_id | JSON containing user's id, group_id to add to and list_id to be added |
+| Type | Fields                           | Description                                                                 |
+| ---- | -------------------------------- | --------------------------------------------------------------------------- |
+| JSON | user.id, group_id, collection_id | JSON containing user's id, group_id to add to and collection_id to be added |
 
 ##### Responses
 
-| Code | Description                                                                                   |
-| ---- | --------------------------------------------------------------------------------------------- |
-| 400  | Response with JSON containing msg that the selected group already has the selected list in it |
-| 201  | Response with JSON containing msg that the list was added to the group                        |
-| 500  | Response with JSON containing msg that there was a server error                               |
+| Code | Description                                                                                         |
+| ---- | --------------------------------------------------------------------------------------------------- |
+| 400  | Response with JSON containing msg that the selected group already has the selected collection in it |
+| 201  | Response with JSON containing msg that the collection was added to the group                        |
+| 500  | Response with JSON containing msg that there was a server error                                     |
 
 ### `/group/create`
 

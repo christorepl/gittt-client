@@ -8,55 +8,39 @@ export default class AddGames extends React.Component {
     this.context.checkAuth();
   }
 
-  addBGANameForm = (
+  addBGGNameForm = (
     <div className="info">
-      <h3>Add BGA List to Your Account</h3>
-      <p>
-        You can add any BGA list to your account. You do not have to own the
-        list. Once you have lists added to your account, you can add the list to
-        a group. Only the first 100 game of a list will be recorded. This is a
-        limitation of the BGA API. List ID's can be found in the url of the list
-        between the username and list name, as seen here: <br />{" "}
-        https://www.boardgameatlas.com/u/get_it_to_the_table
-        <span className="url">/YxP47UnvdB</span>/owned
-      </p>
+      <h3>Add BGG Collection to Your Account</h3>
+      <p>You can add any BGG user collection to your account.</p>
 
-      <p>Try some of these lists:</p>
-      <ul>
-        <li key="first example">PEPG0q0gSq - large list of over 200 games</li>
-        sPkuJdSoAg
-      </ul>
-
-      <form className="user-form" onSubmit={(e) => this.context.getBGAList(e)}>
-        <label htmlFor="id">Board Game Atlas List ID:</label>
+      <form
+        className="user-form"
+        onSubmit={(e) => this.context.getBGGCollection(e)}
+      >
+        <label htmlFor="id">Board Game Geek Username:</label>
         <br />
         <input
           type="text"
           name="id"
           required
-          onChange={(e) => this.context.setBGAListID(e.target.value)}
+          onChange={(e) => this.context.setBGGUsername(e.target.value)}
         />
         <br />
-        <label htmlFor="list_name">Name your List:</label>
+        <label htmlFor="collection_name">Name your Collection:</label>
         <br />
         <input
           type="text"
-          name="list_name"
+          name="collection_name"
           required
-          onChange={(e) => this.context.setBGAListName(e.target.value)}
+          onChange={(e) => this.context.setCollectionName(e.target.value)}
         />
         <br />
-        <button type="submit">Get BGA List</button>
-        <footer>
-          The BGA server is slow at times. The larger the list, the longer the
-          response will take. Please wait until you receive a notification that
-          your request was completed before leaving the page.
-        </footer>
+        <button type="submit">Get BGG Collection</button>
       </form>
     </div>
   );
 
   render() {
-    return <div className="user-dash">{this.addBGANameForm}</div>;
+    return <div className="user-dash">{this.addBGGNameForm}</div>;
   }
 }

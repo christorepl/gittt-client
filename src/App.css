@@ -255,10 +255,6 @@ footer {
   text-align: center;
 }
 
-.user-lists {
-  padding: 50px;
-}
-
 .dash-menu {
   background-color: rgb(237, 231, 227);
   z-index: 10000000;
@@ -314,10 +310,6 @@ footer {
   font-size: 25px;
 }
 
-.how-to-hidden {
-  display: none;
-}
-
 .notification-container {
   font-size: 14px;
   box-sizing: border-box;
@@ -330,22 +322,19 @@ footer {
 }
 
 .notification {
-  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0);
   transition: 0.3s ease;
   position: relative;
   pointer-events: auto;
-  overflow: hidden;
   margin: 0 0 6px;
-  padding: 20px;
   margin-bottom: 15px;
-  max-height: 100px;
+  max-height: 150px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgb(153, 153, 153);
   color: #000;
 }
 
 .notification:hover {
-  box-shadow: 0 0 12px rgb(255, 255, 255);
+  box-shadow: 0 0 10px rgb(153, 153, 153);
   cursor: pointer;
 }
 
@@ -366,9 +355,8 @@ footer {
   text-align: left;
   height: 18px;
   margin-left: -1px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-wrap: normal;
+  padding-bottom: 15px;
 }
 
 .notification-icon {
@@ -391,7 +379,7 @@ footer {
 }
 
 .yellow {
-  background-color: #ffd700;
+  background-color: #ff7b00;
 }
 
 .box {

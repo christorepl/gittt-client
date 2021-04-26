@@ -12,7 +12,7 @@ export default class HomepageUser extends React.Component {
     return (
       <div className="user-dash">
         <img src={gitttLogo} alt="Get it to the Table logo" />
-        <h3>Hello, {this.context.user_name}!</h3>
+        <h3>{this.context.user_name}'s Dashboard</h3>
         <Link to="/delete-account">
           <AiIcons.AiOutlineUserDelete />
           <span className="nav-span">Delete Account Page</span>
@@ -23,7 +23,7 @@ export default class HomepageUser extends React.Component {
         </Link>
         <Link to="/how-to">How To Page</Link>
 
-        {this.context.groups.length > 0 ? (
+        {this.context.groups ? (
           <>
             <h3>Get to swiping!</h3>
             <GroupMenu />

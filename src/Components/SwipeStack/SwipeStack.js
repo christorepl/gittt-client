@@ -41,13 +41,13 @@ export default class SwipeStack extends React.Component {
                 >
                   <div
                     style={{
-                      backgroundImage: "url(" + game.game_img_url + ")",
+                      backgroundImage: `url("${game.game_img_url}")`,
                     }}
                     className="card"
                   >
                     <h3>
                       <a
-                        href={game.game_bga_url}
+                        href={game.game_bgg_url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="gameLink"
@@ -61,7 +61,7 @@ export default class SwipeStack extends React.Component {
             ) : (
               <h3>
                 You have no more games to swipe for this group! Any group member
-                can add lists to the group.
+                can add collections to the group.
               </h3>
             )}
           </div>
@@ -69,6 +69,7 @@ export default class SwipeStack extends React.Component {
         <div onClick={() => this.context.swiped('left', this.context.currentGame.game_name, group_id)}><FaIcons.FaThumbsDown size={50} color={'red'}/></div>
         <div onClick={() => this.context.swiped('right', this.context.currentGame.game_name, group_id)}><FaIcons.FaThumbsUp size={50} color={'green'}/></div>
       </div> */}
+          {/* placeholder buttons, need to properly implement the callback */}
 
           {(this.context.lastDirection === "right" &&
             this.context.games.length) ||
@@ -90,7 +91,7 @@ export default class SwipeStack extends React.Component {
         <ul>
           {this.context.matchedGames.map((game, index) =>  {
             return (
-              <li key={index}><a href={game.game_bga_url} target="_blank" rel="noopener noreferrer">{game.game_name}</a></li>
+              <li key={index}><a href={game.game_bgg_url} target="_blank" rel="noopener noreferrer">{game.game_name}</a></li>
             )
           })}
         </ul>

@@ -5,7 +5,6 @@ import AppContext from "../../Context/AppContext";
 export default class Notification extends React.Component {
   static contextType = AppContext;
   render() {
-    console.log(this.context);
     const iconPicker = (type) => {
       switch (type) {
         case "INFO":
